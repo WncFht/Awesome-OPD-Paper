@@ -1,0 +1,249 @@
+\documentclass[11pt,a4paper]{thuc3i}
+\usepackage[fontset=fandol,UTF8]{ctex}
+\usepackage[compress]{natbib}
+\bibliographystyle{plainnat}
+
+\setheadertext{One-Shot On-Policy Distillation}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multirow}
+ %
+    %
+\usepackage{hyperref}       %
+\usepackage{url}            %
+\usepackage{tabularx}
+\usepackage{makecell}
+\usepackage{array,ragged2e,booktabs}
+\newcolumntype{P}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+\usepackage{longtable}
+\usepackage{amsfonts}       %
+\usepackage{amsthm}         %
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{claim}{Claim}
+\newtheorem{proposition}{Proposition}
+\usepackage{nicefrac}       %
+      %
+\usepackage{xcolor}         %
+
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\definecolor{darkblue}{rgb}{0, 0, 0.5}
+\hypersetup{colorlinks=true, citecolor=darkblue, linkcolor=darkblue, urlcolor=darkblue}
+
+\usepackage{xurl}
+
+\usepackage{soul}
+\usepackage{amsmath}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{changes}
+\usepackage{mathtools}
+\usepackage{pifont}
+\usepackage{tocloft}
+
+\usepackage{colortbl}
+\usepackage{wrapfig}
+\usepackage{xspace}
+\usepackage{multirow}
+\usepackage{enumitem}
+
+\usepackage{listings}
+\usepackage{fontawesome5}
+
+\usepackage{caption}
+
+\usepackage{afterpage}
+\usepackage{float}
+\usepackage[edges]{forest}
+\usepackage[normalem]{ulem}
+\usepackage{bbding}
+\usepackage[most,skins,theorems]{tcolorbox}
+\usepackage{epigraph}
+
+\usepackage[tikz]{bclogo}
+\usepackage[framemethod=tikz]{mdframed}
+
+
+\definecolor{lightorange}{HTML}{faa755}
+\definecolor{lightblue}{RGB}{220,235,250}
+\tcbset{
+  takeawaysbox/.style={
+    title=Takeaways,
+    colback=lightblue!80,
+    colframe=black,
+    fonttitle=\bfseries\small,
+    coltitle=white,
+    colbacktitle=black,
+    enhanced,
+    attach boxed title to top left={xshift=2.5mm,yshift=-2.5mm},
+    boxed title style={rounded corners, size=small, colframe=black, colback=black},
+    width=\linewidth,
+    arc=3.5mm
+  },
+  examplebox/.style={
+    colback=orange!6,
+    colframe=lightorange,
+    fonttitle=\bfseries\small,
+    coltitle=black,
+    colbacktitle=orange!18,
+    enhanced,
+    attach boxed title to top left={xshift=2.5mm,yshift=-2.5mm},
+    boxed title style={rounded corners, size=small, colframe=lightorange, colback=orange!18},
+    width=\linewidth,
+    arc=3.5mm
+  }
+}
+\tcbset{
+  taskbox/.style={
+    title=Task Definition,
+    colback=lightblue!80,
+    colframe=black,
+    fonttitle=\bfseries\small,
+    coltitle=white,
+    colbacktitle=black,
+    enhanced,
+    attach boxed title to top left={xshift=2.5mm,yshift=-2.5mm},
+    boxed title style={rounded corners, size=small, colframe=black, colback=black},
+    width=\linewidth,
+    arc=2mm
+  }
+}
+
+\definecolor{overviewbg}{HTML}{FFF3E0}
+\definecolor{overviewframe}{HTML}{E65100}
+\tcbset{
+  overviewbox/.style={
+    title=Overview,
+    colback=overviewbg,
+    colframe=overviewframe,
+    fonttitle=\bfseries\small,
+    coltitle=white,
+    colbacktitle=overviewframe,
+    enhanced,
+    attach boxed title to top left={xshift=2.5mm,yshift=-2.5mm},
+    boxed title style={rounded corners, size=small, colframe=overviewframe, colback=overviewframe},
+    width=\linewidth,
+    arc=3.5mm
+  }
+}
+
+\definecolor{tplhead}{HTML}{1F2A6E}   
+\definecolor{tplbodybg}{HTML}{EEEFF9} 
+\definecolor{tplkw}{HTML}{1F5FBF}     
+\definecolor{tplcmt}{HTML}{8A8A8A}    
+\definecolor{tplnum}{HTML}{3A6EA5}    
+\newtcolorbox{tplbox}[1]{%
+  enhanced, colback=white, colframe=tplhead, colbacktitle=tplhead,
+  coltitle=white, fonttitle=\bfseries\footnotesize, title={#1},
+  boxrule=0.9pt, titlerule=0pt, arc=2pt,
+  left=5pt, right=5pt, top=3pt, bottom=3pt,
+  equal height group=tplex,   
+}
+\newtcolorbox{tplinput}{%
+  colback=tplbodybg, colframe=tplbodybg, boxrule=0pt, arc=1.5pt,
+  left=4pt, right=4pt, top=2pt, bottom=2pt,
+  before skip=3pt, after skip=3pt,   
+}
+\definecolor{tpltokctrl}{HTML}{1F5FBF}   
+\definecolor{tpltokrole}{HTML}{9B2D86}   
+\definecolor{tpltokthink}{HTML}{1E8449}  
+\definecolor{tpltokesc}{HTML}{8A8A8A}    
+\newcommand{\tplctrl}[1]{{\color{tpltokctrl}\bfseries #1}}
+\newcommand{\tplrole}[1]{{\color{tpltokrole}\bfseries #1}}
+\newcommand{\tplthink}[1]{{\color{tpltokthink}\bfseries #1}}
+\newcommand{\tplesc}[1]{{\color{tpltokesc}#1}}
+\lstdefinestyle{tplpy}{%
+  language=Python, basicstyle=\ttfamily\scriptsize,
+  keywordstyle=\color{tplkw}\bfseries, commentstyle=\color{tplcmt},
+  numbers=left, numberstyle=\tiny\color{tplnum}, numbersep=5pt,
+  showstringspaces=false, breaklines=true, frame=none,
+  aboveskip=2pt, belowskip=2pt, xleftmargin=12pt,
+}
+
+
+\definecolor{phenobg}{HTML}{EBF5FB}
+\definecolor{phenoframe}{HTML}{2980B9}
+\definecolor{mechbg}{HTML}{FEF5E7}
+\definecolor{mechframe}{HTML}{E67E22}
+\definecolor{recipebg}{HTML}{D5F5E3}
+\definecolor{recipeframe}{HTML}{1E8449}
+\definecolor{overviewdark}{HTML}{2C3E50}
+
+\usepackage{cleveref}
+
+\newcommand{\greencheck}{{\color{Green}\CheckmarkBold}}
+\newcommand{\redcross}{{\color{Red}\XSolidBrush}}
+\renewcommand{\today}{2026-09-04}
+
+\usepackage[dvipsnames]{xcolor}
+
+\title{重新思考大语言模型的同策略蒸馏 II：一个训练实例}
+
+
+\author{%
+    Zixuan Fu$^{*1}$,
+    Bingxiang He$^{*\dagger\ddagger1}$,
+    Yuxin Zuo$^{*\dagger1}$,
+    Haohuan Huang$^{*1,2}$,
+    Jinqian Zhang$^{1}$,
+    Ruhang Xiao$^{3}$,
+    Cheng Qian$^{4}$,
+    Qinyu Luo$^{5}$,
+    Huan-ang Gao$^{1}$,
+    Yudong Wang$^{1}$,
+    Zhiyuan Liu$^{1}$,
+    Ning Ding$^{\ddagger1}$,
+    Chaojun Xiao$^{\ddagger1}$\\
+    $^{1}$Tsinghua University \quad
+    $^{2}$University of Chinese Academy of Sciences \quad
+    $^{3}$Northeastern University\\
+    $^{4}$University of Illinois Urbana-Champaign \quad
+    $^{5}$Johns Hopkins University \quad
+    \vskip -1mm
+    \textbf{$^*$Equal Contribution.} \quad 
+    \textbf{$^\dagger$Project Lead.} \quad \textbf{$^\ddagger$Corresponding Authors.} 
+    \vskip -1mm
+    \faGithub~{\fontfamily{ppl}\selectfont \textbf{Code:}}~\url{https://github.com/Thinking-Space/One-Shot-OPD}. \\
+    \vskip 1mm
+    \faEnvelope[regular] \texttt{hebx24@mails.tsinghua.edu.cn, \{dingning,xcj\}@tsinghua.edu.cn}
+}
+
+\input{Sections/0_Abstract}
+
+\pretitlefigure{%
+    \begin{center}
+        \includegraphics[width=\linewidth]{figures/main1.pdf}
+        \captionof{figure}{%
+            A single query recovers most of full-data OPD's gain on mathematical reasoning (left), and the effect holds across domains and model families. Under multi-teacher OPD, 16 queries per domain match full-data training (right).
+        }
+        \label{fig:teaser}
+    \end{center}
+    \vskip4pt
+}
+
+\begin{document}
+
+\maketitle
+\newpage
+
+
+\input{Sections/1_Introduction}
+\input{Sections/2_Preliminaries}
+\input{Sections/3_One-shot}
+\input{Sections/4_Mechanism-Data}
+\input{Sections/5_Mechanism-Algo}
+\input{Sections/6_MOPD}
+\input{Sections/7_Discussion}
+\input{Sections/8_Related-work}
+\input{Sections/9_Conclusion}
+
+\bibliography{main}
+
+\newpage
+\clearpage
+\appendix
+\input{Sections/Appendix}
+
+\end{document}

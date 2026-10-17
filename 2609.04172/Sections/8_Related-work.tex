@@ -1,0 +1,12 @@
+
+\section{相关工作}
+\label{sec:related}
+
+\paragraph{同策略蒸馏}
+同策略蒸馏（OPD）在教师监督下使用自身的轨迹训练学生模型~\citep{song2026survey}。MiniLLM~\citep{gu2024minillm} 通过策略梯度在反向 KL 下优化了这一过程，而 GKD~\citep{agarwal2024policy} 将其泛化至散度以及同策略与异策略混合情形。\citet{yang2026learning} 将 OPD 视为稠密 KL 约束的强化学习，其中每个 token 的对数比率充当隐式奖励。如今，OPD 出现在前沿的后训练架构中~\citep{yang2025qwen3,zeng2026glm,xiao2026mimo,xu2026deepseek,blakeman2026nemotron}，其中若干采用我们在第~\ref{sec:mopd} 节研究的多教师形式，将每个查询路由至领域专家。越来越多的研究从算法层面解释了为何 OPD 有效：一条主线研究其目标与更新几何结构：稠密的 per-token 目标取代了结果奖励强化学习中的单个序列级标量，这在参数空间中引导一个早期锁定、低秩的更新子空间~\citep{cai2026learning,shen2026geometry}，且可重述为 token 级策略梯度~\citep{ko2026scaling}，从而与将 SFT 的稠密更新与 RL 的局部子网络分离的分析相连接~\citep{mukherjee2026reinforcement,zhu2025path}。另一条主线则探讨 OPD 成功或失败的条件：教师与学生间共享的思维模式，以及教师过强的局限性~\citep{li2026rethinking}，哪些 token 实际上可被学习~\citep{armandpour2026unmasking,wang2026not}，以及具有简单修复方案的反复失败模式~\citep{zhu2026many,fu2026revisiting}。这些解释均以训练集为给定前提。我们则提出：OPD 需要多少训练输入？并发现关键约束并非数据量，而是学生吸收信息的速率。
+
+\paragraph{数据高效的推理后训练。}
+一条并行的研究探讨了少量数据如何激发强大的推理能力。在稀疏结果-奖励强化学习情景下，\citet{wang2025oneshot} 表明单个示例能够使模型持续优化超过一千步，我们将其适配到 OPD 的稠密信号设置中。LIMR~\citep{limr} 通过评估每个示例的学习影响进行排序，将 RLVR 训练集剪枝数倍。在监督微调下，LIMA~\citep{zhou2023lima}、LIMO~\citep{ye2025limo} 和 s1~\citep{muennighoff2025s1} 仅需约千个精心筛选的示例，即可获得具有竞争力的对齐或推理能力。在 OPD 中，对推理前缀调度监督可使训练成本降低数倍~\citep{zhang2026fast}。更广泛的后训练工作则通过影响度或质量来选择高价值子集~\citep{xia2024less,chen2024alpagasus,he2025right,he2025air}。这些工作与我们的数据效率主题一致，但其监督仍依赖于精心筛选的问题，在强化学习情况下以稀疏结果标量形式提供，或在 SFT 情况下以参考解形式提供。而 OPD 则在每个访问的前缀处提供稠密的 per-token 目标，并在学生从未解决过的查询上依然有效（第~\ref{sec:one-shot} 节），即使在错误的滚动路径上，教师信号仍保持信息丰富~\citep{armandpour2026unmasking}，因此限制因素从是否存在有用信号这一在稀疏奖励下的固有难题，转变为同策略学生吸收已充足信号的速度（第~\ref{sec:mech-dynamics} 节）。
+
+\paragraph{合成的无监督后训练数据。}
+越来越多的研究工作减少了后训练对人工编写、精心筛选数据的依赖。其中一个方向是对输入进行合成：Self-Instruct~\citep{wang2023self} 和 Evol-Instruct~\citep{xu2024wizardlm} 从语言模型中引导生成指令，而 Magpie~\citep{xu2025magpie} 仅凭一个聊天模板前缀即可激发完整的“指令—响应”对。第二个方向则在强化学习（RL）~\citep{he2026far} 中去除真实标签，以模型置信度或熵~\citep{zhao2026learning,agarwal2026unreasonable} 等自生成信号、多条 rollout 中的多数一致结果~\citep{zuo2026ttrl}，或从未标记语料库~\citep{dong2025reinforcement} 中提取的奖励，替代可验证的奖励。第三个方向则彻底摒弃外部任务，让模型自行提出任务~\citep{zhao2026absolute,zweiger2026self}。这些研究路径分别放松了对奖励或查询来源的监督要求。我们的模板驱动及 WildChat-OPD 实验结果（第~\ref{sec:template} 节）进一步推动了查询侧的解耦：由于教师模型在每个访问到的前缀处均提供稠密监督，查询的作用仅在于将学生模型置于一种有益的推理状态，因此一个跨领域聊天日志，甚至一个无内容的模板，均可近乎同样有效地驱动 OPD。

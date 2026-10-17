@@ -1,0 +1,273 @@
+\begin{thebibliography}{10}
+
+\bibitem{agarwal2024policy}
+Rishabh Agarwal, Nino Vieillard, Yongchao Zhou, Piotr Stanczyk, Sabela~Ramos
+  Garea, Matthieu Geist, and Olivier Bachem.
+\newblock On-policy distillation of language models: Learning from
+  self-generated mistakes.
+\newblock In {\em The twelfth international conference on learning
+  representations}, 2024.
+
+\bibitem{gu2024minillm}
+Yuxian Gu, Li~Dong, Furu Wei, and Minlie Huang.
+\newblock Minillm: Knowledge distillation of large language models.
+\newblock In {\em ICLR}, 2024.
+
+\bibitem{lu2025onpolicydistillation}
+Kevin Lu and Thinking~Machines Lab.
+\newblock On-policy distillation.
+\newblock {\em Thinking Machines Lab: Connectionism}, 2025.
+\newblock https://thinkingmachines.ai/blog/on-policy-distillation.
+
+\bibitem{xiao2026mimov2flashtechnicalreport}
+LLM-Core Xiaomi.
+\newblock Mimo-v2-flash technical report, 2026.
+
+\bibitem{xu2026deepseek}
+Anyi Xu, Bangcai Lin, Bing Xue, Bingxuan Wang, Bingzheng Xu, Bochao Wu, Bowei
+  Zhang, Chaofan Lin, Chen Dong, Chenchen Ling, et~al.
+\newblock Deepseek-v4: Towards highly efficient million-token context
+  intelligence.
+\newblock {\em arXiv preprint arXiv:2606.19348}, 2026.
+
+\bibitem{luo2026demystifying}
+Feng Luo, Yu-Neng Chuang, Guanchu Wang, Zicheng Xu, Xiaotian Han, Tianyi Zhang,
+  and Vladimir Braverman.
+\newblock Demystifying opd: Length inflation and stabilization strategies for
+  large language models.
+\newblock {\em arXiv preprint arXiv:2604.08527}, 2026.
+
+\bibitem{yang2026eos}
+Yuxiao Yang, Tianrun Yu, Shangzhe Li, Kaixiang Zhao, Xuchao Zhang, Chetan
+  Bansal, Huaxiu Yao, Taylor~W Killian, and Weitong Zhang.
+\newblock When eos tokens disagree: Understanding length inflation in on-policy
+  distillation.
+\newblock {\em arXiv preprint arXiv:2609.20511}, 2026.
+
+\bibitem{fu2026revisiting}
+Yuqian Fu, Haohuan Huang, Kaiwen Jiang, Jiacai Liu, Zhuo Jiang, Yuanheng Zhu,
+  and Dongbin Zhao.
+\newblock Revisiting on-policy distillation: Empirical failure modes and simple
+  fixes.
+\newblock {\em arXiv preprint arXiv:2603.25562}, 2026.
+
+\bibitem{yu2026mismatch}
+Zichao Yu, Chengzhi Yu, Shengze Xu, Yujin Han, Bingqing Jiang, Xu~Wang, and
+  Difan Zou.
+\newblock Mismatch matters: On-policy distillation beyond token agreement.
+\newblock {\em arXiv preprint arXiv:2608.09836}, 2026.
+
+\bibitem{zhang2026fast}
+Dongxu Zhang, Zhichao Yang, Sepehr Janghorbani, Jun Han, Andrew Ressler~II,
+  Qian Qian, Gregory~D Lyng, Sanjit~Singh Batra, and Robert~E Tillman.
+\newblock Fast and effective on-policy distillation from reasoning prefixes.
+\newblock In {\em Findings of the Association for Computational Linguistics:
+  ACL 2026}, pages 25553--25569, 2026.
+
+\bibitem{ziheng2026less}
+Zhou Ziheng, Jiaqi Li, Huacong Tang, Ying~Nian Wu, and Demetri Terzopoulos.
+\newblock Less is more: Early stopping rollout for on-policy distillation.
+\newblock {\em arXiv preprint arXiv:2605.27028}, 2026.
+
+\bibitem{liu2026prefix}
+Kaiyuan Liu, Ziyuan Zhuang, Yang Bai, Bing Wang, Rongxiang Weng, and Jieping
+  Ye.
+\newblock Prefix teach, suffix fade: Local teachability collapse in
+  strong-to-weak on-policy distillation.
+\newblock {\em arXiv preprint arXiv:2605.13643}, 2026.
+
+\bibitem{xu2026pass}
+Haolei Xu, Xiaowen Xu, Haiwen Hong, Zixuan Ni, Hongxing Li, Yiwen Qiu, Weiming
+  Lu, and Yongliang Shen.
+\newblock Pass the baton: Trajectory-relayed on-policy distillation.
+\newblock {\em arXiv preprint arXiv:2607.26057}, 2026.
+
+\bibitem{jiang2026trajectory}
+Li~Jiang, Haoran Xu, Yichuan Ding, and Amy Zhang.
+\newblock Trajectory-refined distillation.
+\newblock {\em arXiv preprint arXiv:2606.08432}, 2026.
+
+\bibitem{team2026kimi}
+Kimi Team, Tongtong Bai, Yifan Bai, Yiping Bao, Jianfeng Cai, Xinyuan Cai,
+  Peizhou Cao, Yuxuan Cao, Ziwei Chai, Y~Charles, et~al.
+\newblock Kimi k3: Open frontier intelligence.
+\newblock {\em arXiv preprint arXiv:2607.24653}, 2026.
+
+\bibitem{wu2026lightning}
+Yecheng Wu, Song Han, and Hai Cai.
+\newblock Lightning opd: Efficient post-training for large reasoning models
+  with offline on-policy distillation.
+\newblock {\em arXiv preprint arXiv:2604.13010}, 2026.
+
+\bibitem{li2026rethinking}
+Yaxuan Li, Yuxin Zuo, Bingxiang He, Jinqian Zhang, Chaojun Xiao, Cheng Qian,
+  Tianyu Yu, Huan-ang Gao, Wenkai Yang, Zhiyuan Liu, et~al.
+\newblock Rethinking on-policy distillation of large language models:
+  Phenomenology, mechanism, and recipe.
+\newblock {\em arXiv preprint arXiv:2604.13016}, 2026.
+
+\bibitem{xuspeculative}
+Wenda Xu, Rujun Han, Zifeng Wang, Long Le, Dhruv Madeka, Lei Li, William~Yang
+  Wang, Rishabh Agarwal, Chen-Yu Lee, and Tomas Pfister.
+\newblock Speculative knowledge distillation: Bridging the teacher-student gap
+  through interleaved sampling.
+\newblock In {\em The Thirteenth International Conference on Learning
+  Representations}, 2024.
+
+\bibitem{qwen3}
+An~Yang, Anfeng Li, Baosong Yang, Beichen Zhang, Binyuan Hui, Bo~Zheng, Bowen
+  Yu, Chang Gao, Chengen Huang, Chenxu Lv, Chujie Zheng, Dayiheng Liu, Fan
+  Zhou, Fei Huang, Feng Hu, Hao Ge, Haoran Wei, Huan Lin, Jialong Tang, Jian
+  Yang, Jianhong Tu, Jianwei Zhang, Jianxin Yang, Jiaxi Yang, Jing Zhou,
+  Jingren Zhou, Junyang Lin, Kai Dang, Keqin Bao, Kexin Yang, Le~Yu, Lianghao
+  Deng, Mei Li, Mingfeng Xue, Mingze Li, Pei Zhang, Peng Wang, Qin Zhu, Rui
+  Men, Ruize Gao, Shixuan Liu, Shuang Luo, Tianhao Li, Tianyi Tang, Wenbiao
+  Yin, Xingzhang Ren, Xinyu Wang, Xinyu Zhang, Xuancheng Ren, Yang Fan, Yang
+  Su, Yichang Zhang, Yinger Zhang, Yu~Wan, Yuqiong Liu, Zekun Wang, Zeyu Cui,
+  Zhenru Zhang, Zhipeng Zhou, and Zihan Qiu.
+\newblock Qwen3 technical report.
+\newblock {\em arXiv preprint arXiv:2505.09388}, 2025.
+
+\bibitem{deepseekai2025deepseekr1incentivizingreasoningcapability}
+DeepSeek-AI.
+\newblock Deepseek-r1: Incentivizing reasoning capability in llms via
+  reinforcement learning, 2025.
+
+\bibitem{yang2026nemotron}
+Zhuolin Yang, Zihan Liu, Yang Chen, Wenliang Dai, Boxin Wang, Sheng-Chieh Lin,
+  Chankyu Lee, Yangyi Chen, Dongfu Jiang, Jiafan He, et~al.
+\newblock Nemotron-cascade 2: Post-training llms with cascade rl and
+  multi-domain on-policy distillation.
+\newblock {\em arXiv preprint arXiv:2603.19220}, 2026.
+
+\bibitem{he2025justrl}
+Bingxiang He, Zekai Qu, Zeyuan Liu, Yinghao Chen, Yuxin Zuo, Cheng Qian, Kaiyan
+  Zhang, Weize Chen, Chaojun Xiao, Ganqu Cui, et~al.
+\newblock Justrl: Scaling a 1.5 b llm with a simple rl recipe.
+\newblock {\em arXiv preprint arXiv:2512.16649}, 2025.
+
+\bibitem{Polaris2025}
+Chenxin An, Zhihui Xie, Xiaonan Li, Lei Li, Jun Zhang, Shansan Gong, Ming
+  Zhong, Jingjing Xu, Xipeng Qiu, Mingxuan Wang, and Lingpeng Kong.
+\newblock Polaris: A post-training recipe for scaling reinforcement learning on
+  advanced reasoning models, 2025.
+
+\bibitem{lightr1proj}
+Liang Wen, Yunke Cai, Fenrui Xiao, Xin He, Qi~An, Zhenyu Duan, Yimin Du,
+  Junchen Liu, Lifu Tang, Xiaowei Lv, Haosheng Zou, Yongchao Deng, Shousheng
+  Jia, and Xiangzheng Zhang.
+\newblock Light-r1: Curriculum sft, dpo and rl for long cot from scratch and
+  beyond, 2025.
+
+\bibitem{deepcoder2025}
+Michael Luo, Sijun Tan, Roy Huang, Ameen Patel, Alpay Ariyak, Qingyang Wu,
+  Xiaoxiang Shi, Rachel Xin, Colin Cai, Maurice Weber, Ce~Zhang, Li~Erran Li,
+  Raluca~Ada Popa, and Ion Stoica.
+\newblock Deepcoder: A fully open-source 14b coder at o3-mini level.
+\newblock
+  \url{https://pretty-radio-b75.notion.site/DeepCoder-A-Fully-Open-Source-14B-Coder-at-O3-mini-Level-1cf81902c14680b3bee5eb349a512a51},
+  2025.
+\newblock Notion Blog.
+
+\bibitem{yu2025dapo}
+Qiying Yu, Zheng Zhang, Ruofei Zhu, Yufeng Yuan, Xiaochen Zuo, Yu~Yue, Tiantian
+  Fan, Gaohong Liu, Lingjun Liu, Xin Liu, et~al.
+\newblock Dapo: An open-source llm reinforcement learning system at scale,
+  2025.
+\newblock {\em URL https://arxiv. org/abs/2503.14476}, 2025.
+
+\bibitem{chen2021evaluating}
+Mark Chen, Jerry Tworek, Heewoo Jun, Qiming Yuan, Henrique~Ponde
+  de~Oliveira~Pinto, Jared Kaplan, Harri Edwards, Yuri Burda, Nicholas Joseph,
+  Greg Brockman, Alex Ray, Raul Puri, Gretchen Krueger, Michael Petrov, Heidy
+  Khlaaf, Girish Sastry, Pamela Mishkin, Brooke Chan, Scott Gray, Nick Ryder,
+  Mikhail Pavlov, Alethea Power, Lukasz Kaiser, Mohammad Bavarian, Clemens
+  Winter, Philippe Tillet, Felipe~Petroski Such, Dave Cummings, Matthias
+  Plappert, Fotios Chantzis, Elizabeth Barnes, Ariel Herbert-Voss,
+  William~Hebgen Guss, Alex Nichol, Alex Paino, Nikolas Tezak, Jie Tang, Igor
+  Babuschkin, Suchir Balaji, Shantanu Jain, William Saunders, Christopher
+  Hesse, Andrew~N. Carr, Jan Leike, Josh Achiam, Vedant Misra, Evan Morikawa,
+  Alec Radford, Matthew Knight, Miles Brundage, Mira Murati, Katie Mayer, Peter
+  Welinder, Bob McGrew, Dario Amodei, Sam McCandlish, Ilya Sutskever, and
+  Wojciech Zaremba.
+\newblock Evaluating large language models trained on code, 2021.
+
+\bibitem{song2026survey}
+Mingyang Song and Mao Zheng.
+\newblock A survey of on-policy distillation for large language models.
+\newblock {\em arXiv preprint arXiv:2604.00626}, 2026.
+
+\bibitem{hinton2015distillingknowledgeneuralnetwork}
+Geoffrey Hinton, Oriol Vinyals, and Jeff Dean.
+\newblock Distilling the knowledge in a neural network, 2015.
+
+\bibitem{kim2016sequence}
+Yoon Kim and Alexander~M Rush.
+\newblock Sequence-level knowledge distillation.
+\newblock In {\em Proceedings of the 2016 conference on empirical methods in
+  natural language processing}, pages 1317--1327, 2016.
+
+\bibitem{ross2011reduction}
+St{\'e}phane Ross, Geoffrey Gordon, and Drew Bagnell.
+\newblock A reduction of imitation learning and structured prediction to
+  no-regret online learning.
+\newblock In {\em Proceedings of the fourteenth international conference on
+  artificial intelligence and statistics}, pages 627--635. JMLR Workshop and
+  Conference Proceedings, 2011.
+
+\bibitem{jin2026entropy}
+Woogyeol Jin, Taywon Min, Yongjin Yang, Dennis Wei, Yi~Zhou, Swanand~Ravindra
+  Kadhe, Nathalie Baracaldo, and Kimin Lee.
+\newblock Entropy-aware on-policy distillation of language models.
+\newblock {\em arXiv preprint arXiv:2603.07079}, 2026.
+
+\bibitem{armandpour2026unmasking}
+Mohammadreza Armandpour, Fatih Ilhan, David Harrison, Ajay Jaiswal, Duc~NM
+  Hoang, Fartash Faghri, Yizhe Zhang, Minsik Cho, and Mehrdad Farajtabar.
+\newblock Unmasking on-policy distillation: Where it helps, where it hurts, and
+  why.
+\newblock {\em arXiv preprint arXiv:2605.10889}, 2026.
+
+\bibitem{fu2026rethinkingii}
+Zixuan Fu, Bingxiang He, Yuxin Zuo, Haohuan Huang, Jinqian Zhang, Ruhang Xiao,
+  Cheng Qian, Qinyu Luo, Huan-ang Gao, Yudong Wang, et~al.
+\newblock Rethinking on-policy distillation of large language models ii: One
+  training example.
+\newblock {\em arXiv preprint arXiv:2609.04172}, 2026.
+
+\bibitem{sheng20261}
+Huanxin Sheng, Zhiling Ye, Haonan Wang, Jian Wang, Jinjie Gu, and Jian Kang.
+\newblock 1\% of tokens can be enough: On gradient estimation in on-policy
+  distillation.
+\newblock {\em arXiv preprint arXiv:2609.24432}, 2026.
+
+\bibitem{wang2026demystifying}
+Rui Wang, Hongru Wang, Yi~Chen, Boyang Xue, Tianqing Fang, Wenhao Yu, and
+  Kam-Fai Wong.
+\newblock Demystifying on-policy distillation: Roles, pathologies, and
+  regulations.
+\newblock {\em arXiv preprint arXiv:2607.13399}, 2026.
+
+\bibitem{xing2026trust}
+Xingrun Xing, Haoqing Wang, Boyan Gao, Ziheng Li, and Yehui Tang.
+\newblock Trust region on-policy distillation.
+\newblock {\em arXiv preprint arXiv:2606.01249}, 2026.
+
+\bibitem{xie2026trust}
+Zhengpeng Xie, Li~Lyna Zhang, Zeke Xie, and Mao Yang.
+\newblock Trust region policy distillation.
+\newblock {\em arXiv preprint arXiv:2607.04751}, 2026.
+
+\bibitem{wu2026lightningii}
+Yecheng Wu, Song Han, and Han Cai.
+\newblock Lightning opd 2.0: Mitigating style bias in cross-teacher on-policy
+  distillation for large reasoning models.
+\newblock {\em arXiv preprint arXiv:2607.28449}, 2026.
+
+\bibitem{kang2026asyncopd}
+Wonjun Kang, Kevin Galim, Seunghyuk Oh, Minjun Kang, Sanghyun Park, Donghoon
+  Kim, Minjae Lee, Minseo Kim, Rishabh Tiwari, Yuchen Zeng, et~al.
+\newblock Asyncopd: How stale can on-policy distillation be?
+\newblock {\em arXiv preprint arXiv:2606.24143}, 2026.
+
+\end{thebibliography}

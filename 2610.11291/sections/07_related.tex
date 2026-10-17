@@ -1,0 +1,21 @@
+\vspace{-2mm}
+\section{相关工作}
+\vspace{-2mm}
+\label{sec:related}
+
+\textbf{同策略蒸馏及其机制。}
+同策略蒸馏（OPD）在学生模型自身策略采样的轨迹上进行训练，而教师模型通过反向KL散度或相关目标提供稠密监督~\citep{agarwal2024policy,gu2024minillm,lu2025onpolicydistillation, song2026survey}。
+通过优化学生自身访问分布的目标，OPD缓解了离线蒸馏中的曝光偏差问题~\citep{hinton2015distillingknowledgeneuralnetwork, kim2016sequence}，这一思想与交互式模仿学习方法（如DAgger）共享~\citep{ross2011reduction}。
+近年来，OPD已成为推理模型后训练阶段的热门选择~\citep{xiao2026mimov2flashtechnicalreport,qwen3,xu2026deepseek,team2026kimi}，推动了近期研究对其中潜在机制的深入理解~\citep{jin2026entropy, fu2026revisiting, armandpour2026unmasking}。
+例如，成功的OPD与教师-学生兼容性密切相关~\citep{li2026rethinking}，即使仅使用单个训练样本或1\%的token，也能恢复大部分全数据量下的OPD效果~\citep{fu2026rethinkingii, sheng20261}。
+
+\textbf{OPD中的失败模式。}
+近期工作识别出OPD的几种失败模式：学生模型的生成轨迹可能变长，陷入重复自我修正，并无法终止~\citep{luo2026demystifying,yang2026eos,fu2026revisiting,yu2026mismatch}，且生成轨迹的后半部分可能偏离教师模型的分布，导致监督信号日益不可靠~\citep{ziheng2026less,xu2026pass,jiang2026trajectory,wang2026demystifying}。
+现有方法通过截断学生模型的生成轨迹~\citep{zhang2026fast,ziheng2026less}、在生成过程中让教师模型介入~\citep{xuspeculative,xu2026pass}、用教师模型优化学生轨迹~\citep{jiang2026trajectory}、在教师模型数据上对OPD进行预热~\citep{li2026rethinking}，或限制更新在信任区域以内~\citep{xing2026trust,xie2026trust}来缓解这些问题。
+另有研究为提高效率而放松严格的同策略性，采用来自教师-SFT参考策略的固定生成轨迹~\citep{wu2026lightning,wu2026lightningii}，或在异步训练中使用策略滞后的学生生成轨迹~\citep{kang2026asyncopd}。
+我们研究这种松弛的最简单形式：从初始学生模型中一次性采样生成轨迹，不经过任何教师-SFT阶段，也不进行刷新。
+除了效率提升外，我们发现冻结生成轨迹还能提高准确率。
+此外，不同于仅关注少数模型对，我们评估了17个多样化的模型对，并表明该优势与初始教师-学生前$k$名重叠度强相关，重叠度越低的模型对受益越多。
+
+
+

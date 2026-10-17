@@ -1,0 +1,73 @@
+\section{初步研究}
+\label{sec:prelim}
+
+\subsection{符号标记}
+令 $x\sim\mathcal{D}$ 表示一个 \emph{训练输入}，$y=(y_1,\ldots,y_L)$ 表示一个响应，其中 $y_{<i}=(y_1,\ldots,y_{i-1})$ 是到 token 位置~$i$ 为止的前缀。我们考虑两个大模型：一个学生 $\pi_{\theta}$ 和一个教师 $\pi_T$ ，每个模型在共享词表上定义一个下一个 token 分布。一个 \emph{轨迹} 是一对 $(x,y)$ ，其中 $y$ 从给定 $x$ 的策略中自回归采样得到。我们使用 $i$ 来索引 token 位置，$t$ 来索引最优化步骤，用 $\theta_t$ 表示第~$t$ 步时的学生参数。一个 \emph{状态} 是自回归上下文 $s_i=(x,y_{<i})$ ，即 OPD 目标所定义的对象。 
+
+\subsection{同策略蒸馏}
+同策略蒸馏（OPD）从学生模型采样轨迹，并将学生模型在实际访问的前缀上对齐到教师模型~\citep{agarwal2024policy}。OPD也可视为一种稠密KL约束强化学习的特例，其中教师分布诱导出一个token级别的奖励，且KL正则化项具有固定的相对权重~\citep{yang2026learning}。
+
+在全分布形式中，OPD 在访问的状态上最小化每个 token 的 KL 散度：
+\begin{equation}
+    \mathcal{L}_{\mathrm{OPD}}(\theta)
+    =
+    \mathbb{E}_{x\sim\mathcal{D},\,y\sim\pi_\theta}
+    \left[
+        \sum_{i=1}^{L}
+        \operatorname{KL}\!\left(
+            \pi_\theta(\cdot\mid s_i)
+            \,\Vert\,
+            \pi_T(\cdot\mid s_i)
+        \right)
+    \right].
+\end{equation}
+
+实际上，我们用每个 token 的优势来估算它：
+\begin{equation}
+    A_i^{\mathrm{OPD}} = \log \pi_T(y_i \mid s) - \log \pi_\theta(y_i \mid s),
+    \label{eq:token-advantage}
+\end{equation}
+
+其中 $s = (x, y_{<i})$。由此公式可得出两个性质：(i) 该信号是\emph{局部}的，即仅依赖于状态~$s$ 处的预测问题，而不依赖于轨迹的结果；(ii) 该信号是\emph{稠密}的，即教师在每个访问过的状态处提供分布信号，而非仅在终端提供标量奖励。
+
+公式~\ref{eq:token-advantage} 仅在学生输出的 token 上评估修正。对同一散度的第二个估计量在每个访问的状态下保留学生最可能的 $k$ 个 token，并按学生的概率对其进行加权：
+\begin{equation}
+    A_i^{\text{top-}k}
+    =
+    \sum_{v \in \mathcal{V}_i}
+    \tilde{\pi}_\theta(v \mid s)
+    \left[
+        \log \pi_T(v \mid s) - \log \pi_\theta(v \mid s)
+    \right],
+    \label{eq:topk-advantage}
+\end{equation}
+其中，$\mathcal{V}_i = \operatorname{TopK}(\pi_\theta(\cdot \mid s), k)$ 和 $\tilde{\pi}_\theta$ 是在该集合上 $\pi_\theta$ 规范化的结果。它将散度截断为 $k$ 项，而非通过一个样本 token 进行估计，以分布的尾部为代价换取更低的方差。第~\ref{sec:setup} 节说明了每次运行所使用的具体形式。以下的对齐度量是根据两个策略记录的分布计算出的诊断指标，因此在任一形式下均可获得。
+
+
+
+\subsection{动态指标}
+
+\paragraph{间隙恢复。}
+由于评估标准和初始师生模型性能差距在不同领域和模型对之间存在差异，原始得分提升无法直接比较。因此，我们报告提升幅度相对于初始师生差距的比率。令 $M_0$、$M_T$ 和 $M_t$ 分别表示初始学生模型、教师模型以及优化步骤~$t$ 时的学生模型的评估得分。在步骤~$t$ 的差距恢复比率为
+$\frac{M_t-M_0}{M_T-M_0}\times100\%.$ 
+当该值为 $0\%$、$100\%$ 或高于 $100\%$ 时，分别表示未向教师模型靠拢、与教师模型持平或超越教师模型。
+
+\paragraph{完整数据恢复。}
+当参考对象为全数据 OPD 而非教师模型时，我们改用全数据 OPD 的增益进行归一化。令 $M_F$ 表示在同一最优化步骤下的全数据 OPD 得分。全数据恢复比为
+$\frac{M_t-M_0}{M_F-M_0}\times100\%.$  当该值接近 $100\%$ 时表示减少的查询集几乎达到了全数据 OPD 的增益，而当该值高于 $100\%$ 时则表示其超过了全数据 OPD 的增益。
+
+
+\paragraph{Top-$k$  token 重叠率。}
+该指标衡量两个策略的高概率 token 集合之间的一致性。令 $S_t^\theta(s)=\operatorname{TopK}(\pi_{\theta_t}(\cdot\mid s),k)$  和 $S^T(s)=\operatorname{TopK}(\pi_T(\cdot\mid s),k)$ 。在最优化步骤~$t$ 时的重叠为
+\begin{equation}
+    O_t^{(k)}
+    =
+    \frac{1}{|\mathcal{T}_t|}
+    \sum_{i\in\mathcal{T}_t}
+    \frac{|S_t^\theta(s_i)\cap S^T(s_i)|}{k},
+    \label{eq:topk-overlap}
+\end{equation}
+其中，$\mathcal{T}_t$ 索引了在步骤~$t$ ~\citep{li2026rethinking} 收集的批量滚动数据中非填充的响应位置。
+
+\paragraph{重叠token优势。}
+在该协议中，我们对教师-学生对数概率差异在共享 token $S_t^\theta(s_i)\cap S^T(s_i)$ 上进行平均，并根据学生对该 token 的概率赋予每个共享 token 以权重。该结果反映了在两个策略均已给予较高秩的 token 上，二者政策之间的距离。由于这种加权方式，以及它是在 top-$k$ 项上而非采样 token 上进行平均，因此其量级远小于第~\ref{sec:rate-setup} 节中的教师-学生距离，两者的数值水平不可直接比较。

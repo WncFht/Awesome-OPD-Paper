@@ -1,0 +1,72 @@
+\section{预备知识与实验设置}
+在本节中，我们讨论了本工作的部分预备知识和基本实验设置。有关相关工作的完整版本，请参见附录~\ref{appendix:related_work}。
+
+\paragraph{OPD 和 MOPD}
+令 $x$ 表示从训练数据集 $\mathcal{D}$ 中采样的提示，
+$\pi_{\theta}$ 和
+$\pi_{\phi}$ 分别表示学生策略和教师策略，
+$y=\{y_t\}^T_{t=1}$ 为学生生成的响应，$h_t=(x,y_{<t})$ 为第 $t$ 步的上下文。
+同策略蒸馏（\textbf{OPD}）从学生策略 $\pi_{\theta}$ 中采样\textbf{同策略}轨迹，并从教师策略 $\pi_{\phi}$ 获得稠密的 token 级监督。
+学生通过最小化 $\mathcal{L}_{\mathrm{OPD}}(\theta)$ 优化，即学生与教师之间的逆向KL散度~\citep{gu2024minillm}：
+
+{
+\begin{align*}
+\mathop{\mathbb{E}}\limits_{\substack{
+    x\sim\mathcal{D} \\
+    y\sim\pi_{\theta}(\cdot\mid x)
+}}
+\left[
+    \frac{1}{T}
+    \sum_{t=1}^{T}
+    D_{\mathrm{KL}}
+    \left(
+        \pi_{\theta}(\cdot\mid h_t)
+        \,\Vert\,
+        \pi_{\phi}(\cdot\mid h_t)
+    \right)
+\right].
+\end{align*}
+}
+在实际中~\cite{coreteam2026mimov2flashtechnicalreport,glm5team2026glm5vibecodingagentic, kimiteam2026kimik3openfrontier}，反向KL通过采样的token $k_1$ 近似~\citep{joschuApproximatingDivergence} 来估计，因此
+$\mathcal{L}_{\mathrm{OPD}}(\theta)$ 可以表示为强化学习目标（即，\textbf{策略梯度（PG）风格的OPD}）：
+
+{
+\begin{align*}
+&\mathcal{L}^{\mathrm{PG}}_{\mathrm{OPD}}(\theta)
+=
+-
+\mathbb{E}_{x,y}
+\left[
+    \frac{1}{T}
+    \sum_{t=1}^{T}
+    \bar{A}^{\mathrm{OPD}}_t
+    \log\pi_{\theta}(y_t\mid h_t)
+\right],
+\ \ \widehat{A}^{\mathrm{OPD}}_t
+=
+\operatorname{sg}
+\left[
+    \log\pi_{\phi}(y_t\mid h_t)
+    -
+    \log\pi_{\theta}(y_t\mid h_t)
+\right],
+\end{align*}
+}
+其中 $\operatorname{sg}[\cdot]$ 表示停止梯度。我们全程采用 PG 风格的同策略蒸馏（OPD）：当教师为某个 token 分配的概率高于学生时，该 token 会被增强，否则被抑制。
+
+多教师同策略蒸馏（\textbf{MOPD}）~\citep{ma2026mopd} 是 OPD 的自然扩展，如今已成为整合多个领域能力的标准后训练范式~\citep{coreteam2026mimov2flashtechnicalreport,kimiteam2026kimik3openfrontier,xu2026deepseek}：学生从自身轨迹中采样，\textbf{每个提示被路由到其对应的领域教师}，最优化过程与单教师 OPD 完全相同。
+
+\paragraph{同源/跨源OPD}
+接着是~\citet{ma2026mopd}，当教师模型和学生模型源自同一基础模型时（通常学生模型为SFT检查点，而教师模型则是基于该检查点通过强化学习后训练获得），我们称该OPD运行为 \textbf{同源}；当两者源自不同基础模型时，则称为 \textbf{跨源}。我们的实验表明，这两种情景表现出显著不同的泛化行为。
+
+我们的教师模型包括 \textbf{Qwen3-32B}~\citep{yang2025qwen3}、\textbf{Light-R1-14B}~\citep{wen2025lightr1}、\textbf{Polaris-7B/4B}~\citep{Polaris2025}、\textbf{OpenMath-Nemotron-1.5B/7B}~\cite{moshkov2025aimo2winningsolutionbuildingopenmath}、JustRL-DeepSeek-1.5B (\textbf{JustRL-1.5B})~\citep{he2025justrl}、Nemotron-Research-Reasoning-Qwen-1.5B (\textbf{Nemotron-1.5B})~\citep{liu2026prorl}、\textbf{DeepScaleR-1.5B}~\cite{tan2026deepscaler} 以及 \textbf{VibeThinker-1.5B}~\cite{xu2025tinymodelbiglogicvibethinker}，而我们的学生模型包括 DeepSeek-R1-Distill-Qwen-14B/7B/1.5B (\textbf{DS-distill-14B/7B/1.5B})~\citep{guo2025deepseekr1}、\textbf{Qwen3-8B-SFT}~\citep{lu2025onpolicydistillation} 以及 \textbf{Qwen3-4B}~\citep{yang2025qwen3}\footnote{请参阅表~\ref{tab:model_lineage} 以了解模型的后训练谱系。}. 由于页面限制，我们仅在正文中展示部分结果。更多结果见附录~\ref{sec:appendix_add_results}。
+
+\paragraph{跨领域/域泛化}
+我们从两个方面研究OPD的泛化能力。
+(1) \textbf{领域内泛化：}
+OPD的训练与评估位于同一任务领域，我们针对\textbf{\emph{问题难度}}、\textbf{\emph{语言}}和\textbf{\emph{推理跨度}}三个方面对评估分布相对于训练分布进行迁移。
+(2) \textbf{跨领域泛化：} 学生模型在某一领域（如数学）的提示上进行训练，并在其他领域（如代码或科学）上进行评估。
+我们研究四个领域：数学、代码、科学和指令遵循（IF）。
+对于\textbf{\underline{数学}}，默认在BigMath上进行训练，并评估三个分布：\emph{英文数学}（AMC2023~\citep{MAA_AMC}，MATH-500~\citep{hendrycks2021measuringmath500}，AIME2025~\citep{MAA_AIME}，AIME2026~\citep{MAA_AIME}，BeyondAIME~\citep{bytedance_seed_2025_beyondaime}，OlymMATH-Hard~\citep{sun2026olymmath}）作为主要评估基准，\emph{中文数学}（OlymMATH-ZH~\citep{sun2026olymmath}，LiveMathBench-ZH~\citep{liu2025livemathbench}）用于语言迁移（从英文到中文的泛化），以及\emph{长跨度数学}（AIME24-Horizon-2和AMC23-Horizon-4子集~\citep{lu2025r}，泛化至需要更多推理步骤的问题~\citep{shojaee2025the,li2026scaling}）。
+对于\textbf{\underline{代码}}，我们在\emph{DeepCoder-Preview-Dataset}~\citep{deepcoder2025}上进行训练，并在\emph{LiveCodeBench}~\citep{jain2025livecodebench}上进行评估；
+对于\textbf{\underline{科学}}，我们在\emph{TextbookReasoning}~\citep{fan2025megascience}和\emph{SCP-116K}~\citep{lu2025scp}上进行训练，并在\emph{GPQA-Diamond}~\citep{rein2023gpqa}上进行评估；对于\textbf{\underline{IF}}，我们在\emph{Nemotron-Post-Training-IF}~\citep{bercovich2025llamanemotron}上进行训练，并在\emph{IF-Eval}~\citep{zhou2023instructionfollowingevaluationlargelanguage}上进行评估。关于训练和评估数据集的更多信息详见附录~\ref{sec:appendix_datasets}

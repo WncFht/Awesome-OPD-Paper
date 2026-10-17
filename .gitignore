@@ -1,0 +1,13 @@
+.DS_Store
+/.crossnote/
+/.claude/skills
+/.extract-*/
+
+# Local LaTeX build products; preserve files supplied with the papers.
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gz
+*.toc
+*.xdv

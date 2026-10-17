@@ -1,0 +1,59 @@
+
+\usepackage{xargs}  
+\usepackage{todonotes}
+\usepackage{amsmath}
+\usepackage{dsfont}
+
+
+\usepackage{longtable}
+
+\usepackage{svg}
+\usepackage{fontawesome}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{latexsym}
+\usepackage{graphicx}
+ 
+ 
+\usepackage{amssymb} 
+\usepackage{url}            
+\usepackage{amsfonts}       
+\usepackage{nicefrac}       
+      
+\usepackage{xspace}
+
+\usepackage{listings}
+\usepackage{makecell}
+\usepackage{inconsolata}
+\usepackage{multicol}
+\usepackage{amstext}
+
+\definecolor{darkblue}{RGB}{84, 112, 198}
+
+
+\definecolor{lightblue}{rgb}{0.85, 0.95, 1.0}    
+\definecolor{lightgreen}{rgb}{0.90, 1.0, 0.90}    
+\definecolor{lightorange}{rgb}{1.0, 0.95, 0.85}   
+\definecolor{lightpurple}{rgb}{0.95, 0.90, 1.0}   
+\definecolor{lightgray}{rgb}{0.97, 0.97, 0.97}    
+
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\definecolor{battery-empty}{rgb}{0.9, 0.9, 0.9}
+\newcommand{\difficultybar}[1]{%
+  \begin{tikzpicture}[baseline, scale=0.5, every node/.style={scale=0.8}]
+    \foreach \i in {1,2,3,4,5} {
+      \ifnum\i>#1
+        \draw[fill=battery-empty] (\i*0.5-0.5, 0) rectangle (\i*0.5, 0.25);
+      \else
+        \pgfmathsetmacro{\colorlevel}{80 - 12*(\i)} 
+        \edef\x{\noexpand\draw[fill=blue!\colorlevel!white, opacity=0.9] (\i*0.5-0.5, 0) rectangle (\i*0.5, 0.25);}
+        \x
+        \draw[blue!50!black] (\i*0.5-0.5, 0) rectangle (\i*0.5, 0.25);
+      \fi
+    }
+    \fill[battery-empty!70] (2.5, 0.08) rectangle (2.6, 0.17);
+    \draw[battery-empty!70!black] (2.5, 0.08) rectangle (2.6, 0.17);
+  \end{tikzpicture}%
+}
+\renewcommand{\arraystretch}{0.96}

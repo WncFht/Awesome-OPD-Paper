@@ -1,0 +1,189 @@
+
+\onecolumn
+\appendix
+\section{训练和评估设置}
+
+
+\label{app:setup}
+
+\paragraph{模型}
+表~\ref{tab:allpairs} 列出了我们在实验中使用的全部17对教师-学生模型。它们涵盖了三个组别：  
+(i)~Qwen3 学生（1.7B、4B、14B）从 Qwen3 Instruct-2507 与 Thinking-2507 教师模型中进行知识蒸馏，教师模型参数规模最高可达 235B-A22B；  
+(ii)~DeepSeek-R1-Distill-Qwen 学生（1.5B、7B）从相同检查点的强化学习训练模型（JustRL、Polaris、Light-R1、DeepCoder）中进行蒸馏；  
+(iii)~一个 Nemotron Cascade-2 数学专家对。  
+对 (g) 和 (h) 在学生模型的 SFT 检查点基础上开始，随后在教师模型生成的回放数据上进行 1 轮次 SFT 训练。  
+推理模式（思考模式 T / 非思考模式 NT）在每一对中固定且保持一致。同一对中的两种方法在训练和评估时均使用相同的聊天模板和推理模式，且评估模式始终与训练模式匹配。  
+由于 DeepSeek-R1-Distill 的聊天模板始终预填充 \texttt{<think>}，因此我们将这些对视为思考模式。
+
+\paragraph{训练数据和设置。}
+所有实验均在来自 \href{https://huggingface.co/datasets/open-r1/DAPO-Math-17k-Processed}{DAPO-Math-17K dataset} 的提示上进行训练（去重后为 14{,}116 个英文提示），每步使用 128 个提示，每个提示生成一次采样。因此，一轮（Epoch）大约为 110 步。对于 Semi-OPD，我们在训练前从初始学生模型 $\pi_0$ 中对每个提示采样一个响应，采样参数和响应长度上限与 OPD 保持一致。OPD 按相同顺序读取提示。因此，两种方法在每一步看到的提示完全相同，仅在生成响应的模型上存在差异。两种方法均采用相同的采样 token 反向 KL 目标函数，且共享同一教师模型、学习率、批量大小和评估协议。表~\ref{tab:hparams} 列出了超参数。此外值得注意的是，在本工作中，Fast OPD 采用 4K 的训练采样回溯限制，遵循~\citep{xu2026pass}。对于仅非思考对的情况，我们在 \cref{fig:allpairs} 和 \cref{fig:overlap} 所示的对比中也对 OPD 采用 4K 的训练回溯长度。然而，在 \cref{tab:baselines} 中，为了与 Fast OPD 明确区分，OPD 对所有对均采用 16K 的回溯限制进行训练。关于训练期间使用的确切回溯形状，可参考 \cref{tab:allpairs}。需要注意的是，这是针对训练回溯长度，评估时我们均采用 32k 或 40k 的限制。
+
+\begin{table}[h]
+  \centering
+  \small
+  \caption{训练和评估超参数。 }
+  \label{tab:hparams}
+  \begin{tabular}{lcc}
+    \toprule
+    & Non-thinking pairs & Think/Long-CoT pairs \\
+    \midrule
+    \multicolumn{3}{l}{\emph{Optimization}} \\
+    Optimizer & \multicolumn{2}{c}{AdamW ($\beta_1{=}0.9$, $\beta_2{=}0.999$, wd $0.01$)} \\
+    Learning rate & \multicolumn{2}{c}{$1\times10^{-6}$, constant (no warm-up)} \\
+    Gradient clipping & \multicolumn{2}{c}{1.0} \\
+    Precision & \multicolumn{2}{c}{bfloat16} \\
+    Prompts per step / rollouts per prompt & \multicolumn{2}{c}{128 / 1} \\
+    Global batch size & \multicolumn{2}{c}{128} \\
+    \midrule
+    \multicolumn{3}{l}{\emph{Rollouts}} \\
+    Max prompt length & \multicolumn{2}{c}{2{,}048} \\
+    Max response length (training) & 4{,}096 & 16{,}384 \\
+    Sampling temperature / top-$p$ & \multicolumn{2}{c}{1.0 / 1.0} \\
+    \midrule
+    \multicolumn{3}{l}{\emph{Loss}} \\
+    Objective & \multicolumn{2}{c}{Sampled-token reverse KL} \\
+    \midrule
+    \multicolumn{3}{l}{\emph{Evaluation}} \\
+    Benchmarks & \multicolumn{2}{c}{AIME24, AIME25, AIME26, HMMT Feb26} \\
+    Metric & \multicolumn{2}{c}{avg@32} \\
+    Temperature / top-$p$ & \multicolumn{2}{c}{1.0 / 1.0} \\
+    Max response length & \multicolumn{2}{c}{32k (40k for Nemotron model)} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+
+
+
+
+\paragraph{基础设施。}
+我们使用 NeMo-RL（DTensor 后端）进行训练，并使用 vLLM 生成滚动数据和评估样本。  
+运行时根据教师模型的大小，使用 1–8 个结点，每个结点配备 8$\times$ \,H100 GPU。
+
+
+
+
+
+\providecommand{\hf}[2]{\href{https://huggingface.co/#1}{#2}}
+\begin{table}[h]
+  \centering
+  \small
+  \caption{所有 17 组教师-学生对，按 Semi-OPD 相对于 OPD 的 AUC 增益排序。  
+模型名称链接至使用的确切 Hugging Face 检查点。  
+模式：T = 思维 / 长思维链，NT = 非思维。  
+容量：训练回放的最大响应长度，Semi-OPD 与 OPD 共享。  
+重叠：初始学生与教师之间的前 64 个 token 重叠百分比。  
+最后一步：两种方法在最后一步评估时的 Semi-OPD 减去 OPD 差值。  
+AUC：两种方法评估步骤范围内，两条准确率曲线之间的有符号面积，除以该跨度长度。  
+增益为四个基准均值在 32 个点上的平均值。  
+R1-Distill = DeepSeek-R1-Distill-Qwen；Cascade-2 = Nemotron-Cascade-2  
+(SFT)：在教师回放上进行一轮 SFT 后的链接学生。  
+$^\dagger$ 使用 40{,}960 token 的响应限制进行评估；其余所有组合均使用 32{,}768。}
+  \label{tab:allpairs}
+ \resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{%
+  \begin{tabular}{cllccrrr}
+    \toprule
+    & & & & Train Len & Init. & \multicolumn{2}{c}{Gain} \\
+    \cmidrule(lr){7-8}
+    \# & Student & Teacher & Mode & Cap & Overlap & Last-step & AUC \\
+    \midrule
+    n & \hf{Qwen/Qwen3-1.7B}{Qwen3-1.7B} & \hf{Qwen/Qwen3-30B-A3B-Thinking-2507}{Qwen3-30B-A3B-Thinking} & T & 16K & 58.9 & \textbf{+9.4} & \textbf{+7.57} \\
+    a & \hf{Qwen/Qwen3-1.7B}{Qwen3-1.7B} & \hf{Qwen/Qwen3-4B-Instruct-2507}{Qwen3-4B-Instruct-2507} & NT & 4K & 62.5 & \textbf{+9.5} & \textbf{+7.09} \\
+    p & \hf{Qwen/Qwen3-4B}{Qwen3-4B} & \hf{Qwen/Qwen3-30B-A3B-Thinking-2507}{Qwen3-30B-A3B-Thinking} & T & 16K & 63.8 & \textbf{+6.2} & \textbf{+6.22} \\
+    o & \hf{Qwen/Qwen3-14B}{Qwen3-14B} & \hf{Qwen/Qwen3-235B-A22B-Thinking-2507}{Qwen3-235B-A22B-Thinking} & T & 16K & 63.4 & \textbf{+13.1} & \textbf{+5.85} \\
+    b & \hf{Qwen/Qwen3-1.7B}{Qwen3-1.7B} & \hf{Qwen/Qwen3-30B-A3B-Instruct-2507}{Qwen3-30B-A3B-Instruct-2507} & NT & 4K & 59.8 & \textbf{+6.8} & \textbf{+5.18} \\
+    f & \hf{Qwen/Qwen3-4B}{Qwen3-4B} & \hf{Qwen/Qwen3-30B-A3B-Instruct-2507}{Qwen3-30B-A3B-Instruct-2507} & NT & 4K & 62.5 & \textbf{+4.2} & \textbf{+4.61} \\
+    c & \hf{Qwen/Qwen3-1.7B}{Qwen3-1.7B} & \hf{Qwen/Qwen3-235B-A22B-Instruct-2507}{Qwen3-235B-A22B-Instruct-2507} & NT & 4K & 56.9 & \textbf{+2.6} & \textbf{+3.27} \\
+    g & \hf{Qwen/Qwen3-1.7B}{Qwen3-1.7B} (SFT) & \hf{Qwen/Qwen3-4B-Instruct-2507}{Qwen3-4B-Instruct-2507} & NT & 4K & 62.9 & \textbf{+2.4} & \textbf{+2.05} \\
+    h & \hf{Qwen/Qwen3-4B}{Qwen3-4B} (SFT) & \hf{Qwen/Qwen3-30B-A3B-Instruct-2507}{Qwen3-30B-A3B-Instruct-2507} & NT & 4K & 63.1 & +0.9 & +1.50 \\
+    d & \hf{Qwen/Qwen3-1.7B}{Qwen3-1.7B} & \hf{Qwen/Qwen3-4B}{Qwen3-4B} & NT & 4K & 70.0 & +1.1 & +1.35 \\
+    m & \hf{deepseek-ai/DeepSeek-R1-Distill-Qwen-7B}{R1-Distill-7B} & \hf{agentica-org/DeepCoder-14B-Preview}{DeepCoder-14B} & T & 16K & 73.9 & +1.5 & +0.97 \\
+    e & \hf{Qwen/Qwen3-1.7B}{Qwen3-1.7B} & \hf{Qwen/Qwen3-8B}{Qwen3-8B} & NT & 4K & 69.4 & +0.8 & +0.54 \\
+    j & \hf{deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B}{R1-Distill-1.5B} & \hf{POLARIS-Project/Polaris-7B-Preview}{Polaris-7B} & T & 16K & 69.7 & +0.1 & +0.24 \\
+    q & Cascade-2-30B-A3B & Cascade-2-Math-Expert$^{\dagger}$ & T & 16K & 89.3 & $-$0.1 & +0.09 \\
+    l & \hf{deepseek-ai/DeepSeek-R1-Distill-Qwen-7B}{R1-Distill-7B} & \hf{qihoo360/Light-R1-14B-DS}{Light-R1-14B} & T & 16K & 72.0 & $-$1.7 & $-$0.30 \\
+    k & \hf{deepseek-ai/DeepSeek-R1-Distill-Qwen-7B}{R1-Distill-7B} & \hf{POLARIS-Project/Polaris-7B-Preview}{Polaris-7B} & T & 16K & 86.8 & $-$2.6 & $-$0.68 \\
+    i & \hf{deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B}{R1-Distill-1.5B} & \hf{hbx/JustRL-DeepSeek-1.5B}{JustRL-1.5B} & T & 16K & 79.7 & +1.4 & $-$1.36 \\
+    \bottomrule
+  \end{tabular}}
+\end{table}
+
+\clearpage
+\newpage
+
+\section{所有配对间的训练动态}
+\label{app:allpairs_dynamics}
+
+我们在本节中提供更多训练动态讨论。\Cref{fig:allpairs_length,fig:allpairs_signal,fig:allpairs_student_entropy,fig:allpairs_teacher_entropy,fig:allpairs_overlap} 跟踪17对中16对（除Nemotron-级联-2对之外）的训练轨迹的五个属性。
+
+\paragraph{展开长度。}
+如\cref{fig:allpairs_length}所示，随着训练的进行，OPD的回溯序列长度逐渐增加，而Semi-OPD由于构造原因，其回溯序列长度始终保持在初始学生模型的回溯序列长度。在最后10个共享步骤中，16组中有15组的OPD回溯序列比Semi-OPD长7\%–113\%。对于重叠度低且不进行思考的Qwen3组合，这种增长最为显著，此时OPD的回溯序列长度常常超过教师模型自身的长度。唯一例外的是R1-Distill-1.5B $\leftarrow$ JustRL-1.5B，其OPD回溯序列反而变短。
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\linewidth]{figures/fig_allpairs_length.pdf}
+  \caption{\textbf{训练展开长度。} 每次训练展开的平均生成 token 数。每个面板中的数字表示在最后 10 个共享步骤中，OPD 的展开比 Semi-OPD 长多少；虚线表示教师模型的展开长度（如可用）。}
+  \label{fig:allpairs_length}
+\end{figure}
+
+\newpage
+\paragraph{正向监督的token}
+如\cref{fig:allpairs_signal}所示，半监督OPD在16组中的15组中保持了比OPD更多的正向监督token（$p_T > p_S$）。例外情况再次出现在R1-Distill-1.5B $\leftarrow$ JustRL-1.5B。
+
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\linewidth]{figures/fig_allpairs_signal.pdf}
+  \caption{\textbf{正向监督 token。} 与 $p_T > p_S$ 共享的训练 token 比例。每个面板中的数字为最后 10 个共享步骤中，Semi-OPD 减去 OPD 的差值，单位为点。}
+  \label{fig:allpairs_signal}
+\end{figure}
+
+\clearpage
+\newpage
+\paragraph{学生与教师的熵。}
+如\cref{fig:allpairs_student_entropy,fig:allpairs_teacher_entropy}所示，在思考配对中，OPD在8个配对中的7个（例外是R1-Distill-7B $\leftarrow$ DeepCoder-14B）将学生和教师的训练token上的下一token熵都推至远低于Semi-OPD的水平，即OPD越来越多地训练在两种模型均已高置信度预测的token上。在非思考配对中，两种方法下学生熵保持相似，而OPD下教师熵通常更高，表明OPD的rollout漂移到了教师不太确定的区域。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\linewidth]{figures/fig_allpairs_student_entropy.pdf}
+  \caption{\textbf{学生熵。} 学生在训练 token 上的平均下一个 token 熵（nats）。}
+  \label{fig:allpairs_student_entropy}
+\end{figure}
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\linewidth]{figures/fig_allpairs_teacher_entropy.pdf}
+  \caption{\textbf{教师熵。} 教师在相同训练 token 上的平均下一个 token 熵（nats），即教师在其监督的轨迹上有多不确定。}
+  \label{fig:allpairs_teacher_entropy}
+\end{figure}
+
+\newpage
+\paragraph{师生重叠。}
+如图\cref{fig:allpairs_overlap}所示，在训练token上，随着学生模型向教师模型靠近，两种方法下当前学生与教师之间的前64个重叠通常都会增加，但不同模型对之间的排序存在差异。
+
+
+
+
+
+
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\linewidth]{figures/fig_allpairs_overlap.pdf}
+  \caption{\textbf{教师与学生在训练轨迹上的重叠。} 当前学生与教师之间的前64个重叠项，基于每种方法自身的训练token计算，使用与\cref{sec:method}中初始重叠相同的度量标准。每个面板中的数字表示最后10个共享步骤中，Semi-OPD减去OPD的差值，单位为百分点。对于两个通过SFT初始化的配对，重叠仅在初始化和第110步时进行测量。}
+  \label{fig:allpairs_overlap}
+\end{figure}
+
+
+\newpage
+\input{sections/rollout_qualitative_comparison}
+
+
+
+
+
+

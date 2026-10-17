@@ -1,0 +1,210 @@
+\documentclass[10pt,logo,twocolumn,copyright]{nvidiatechreport}
+\usepackage[fontset=fandol,UTF8]{ctex}
+
+
+\usepackage{mdframed}
+ 
+    
+\def\UrlBreaks{\do\/\do-}
+\usepackage{amsfonts}       
+\usepackage{nicefrac}       
+      
+\usepackage[dvipsnames]{xcolor}         
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage[numbers]{natbib}
+\usepackage{tabto}
+\usepackage{xspace}
+\usepackage{amsmath}
+\usepackage{adjustbox}
+\usepackage{enumitem}
+\usepackage{wrapfig}
+
+\usepackage{makecell}
+\usepackage{subcaption}
+
+\usepackage{footmisc}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{float}
+
+
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+
+\usepackage{natbib}
+\input{math_commands.tex}
+
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{adjustbox}
+\usepackage{tabularx}
+\usepackage{arydshln}
+\usepackage{wrapfig}
+
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage{amsmath}
+\usepackage{makecell}
+\usepackage{hhline}
+\usepackage{array}
+\usepackage{diagbox}
+\usepackage{graphicx}
+\usepackage{adjustbox}
+
+
+\usepackage{colortbl} 
+\usepackage[table]{xcolor} 
+
+
+\usepackage[flushleft]{threeparttable} 
+\usepackage{multirow}
+
+\usepackage{wrapfig}
+
+\newcommand{\tf}[1]{\mathbf{#1}}
+
+\definecolor{Note_color}{rgb}{0.0, 0.0, 0.0}
+\newcommand{\NOTE}[1]{\textcolor{Note_color}{#1}}
+
+\definecolor{lightyellow}{RGB}{255, 255, 204}
+\definecolor{lightred}{RGB}{255, 204, 204}
+\definecolor{lightgreen}{RGB}{204, 255, 204}
+
+
+\usepackage{xcolor}
+\definecolor{maskorange}{HTML}{ffe6cc}
+\definecolor{maskblue}{HTML}{d4e1f5}
+\definecolor{maskred}{HTML}{ffcccc}
+\definecolor{maskgreen}{HTML}{d5e7d4}
+\definecolor{diff_green}{HTML}{7cb342}
+\definecolor{nldgreen}{HTML}{E8F5E9}
+
+\newcommand{\tinybox}[2][1.5ex]{%
+  \begingroup
+  \setlength{\fboxsep}{0pt}%
+  \colorbox{#2}{\rule{0pt}{#1}\rule{#1}{0pt}}%
+  \endgroup
+}
+
+
+
+\usepackage{pifont}
+\newcommand\mynuma[1]{\ifcase#1 \or \ding{172}\or \ding{173}\or
+  \ding{174}\or \ding{175}\or \ding{176}\or \ding{177}
+  \or \ding{178}\or \ding{179}\or \ding{180}\or \ding{181}\else *\fi\relax}
+
+\newcommand\mynumb[1]{\ifcase#1 \or \ding{182}\or \ding{183}\or
+  \ding{184}\or \ding{185}\or \ding{186}\or \ding{187}
+  \or \ding{188}\or \ding{189}\or \ding{190}\or \ding{191}\else *\fi\relax}
+
+
+\usepackage{booktabs}
+\usepackage{amsmath,amssymb}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{placeins}   
+\usepackage[capitalise]{cleveref}
+
+\graphicspath{{figures/}}
+
+\usepackage{caption}
+
+\NewDocumentCommand{\yonggan}
+{ mO{} }{\textcolor{red}{\textsuperscript{\textit{yonggan}}\textsf{{\small[#1]}}}}
+
+
+\NewDocumentCommand{\pavlo}
+{ mO{} }{\textcolor{red}{\textsuperscript{\textit{pavlo}}\textsf{{\small[#1]}}}}
+
+\NewDocumentCommand{\siyan}
+{ mO{} }{\textcolor{green!50!black}{\textsuperscript{\textit{siyan}}\textsf{{\small[#1]}}}}
+
+
+
+\newcommand{\online}{on-policy}
+\newcommand{\Online}{On-policy}
+\newcommand{\frozen}{frozen}
+\newcommand{\Frozen}{Frozen}
+\newcommand{\opd}{OPD}
+\newcommand{\method}{Semi-OPD\xspace}
+\newcommand{\pizero}{\pi_0}
+\newcommand{\from}{\ensuremath{\leftarrow}}   
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+
+
+
+
+\title{我们何时需要同策略蒸馏？对离线学生回放进行蒸馏通常效果更好}
+
+\author{
+Siyan Zhao$^{*\dagger1}$, Yonggan Fu$^{*}$, Jindong Jiang, Shih-Yang Liu, Song Bian, Byung-Kwan Lee, Sharath Turuvekere Sreenivas, Wenliang Dai, Hanrong Ye, Aditya Grover$^{1}$, Pavlo Molchanov
+}
+
+\correspondingauthor{X}
+
+\input{sections/00_abstract}
+
+\newcommand{\teaserfigure}{%
+  \begingroup
+  \captionsetup{type=figure}%
+  \centering
+  \includegraphics[width=0.95\linewidth]{figures/fig_teaser_speedup.pdf}
+  \vspace{-0.5em}
+\caption{
+\textbf{Accuracy \& training cost of different distillation methods.} Our \method achieves much improved/comparable accuracy for teacher--student pairs with low/high overlap, respectively, while reducing training time by up to $11.4\times$ over OPD. 
+Accuracy is averaged over AIME~24/25/26 and HMMT~Feb~26.
+}
+\label{fig:speedup}
+  \endgroup
+}
+
+\makeatletter
+\renewcommand{\maketitle}{%
+  \twocolumn[%
+    \begin{adjustwidth}{0pt}{24pt}%
+      \begin{flushleft}%
+        {\raggedright \titlefont \@title\par}%
+        \vskip11pt%
+        {\raggedright \@author\par}%
+        \vskip20pt%
+      \end{flushleft}%
+    \end{adjustwidth}%
+    \abscontent
+    \vskip16pt
+    \teaserfigure
+    \vskip20pt%
+  ]%
+  \thispagestyle{firststyle}%
+}
+\makeatother
+
+
+\begin{document}
+\maketitle
+
+
+
+\input{sections/01_intro}
+\input{sections/02_method}
+\input{sections/03_experiments}
+\input{sections/04_when}
+\input{sections/05_why}
+\input{sections/06_more}
+\input{sections/07_related}
+\input{sections/08_conclusion}
+
+
+
+{
+  \small
+  \bibliographystyle{unsrt}
+  \bibliography{ref}
+}
+
+\input{sections/09_appendix}
+
+\end{document}
