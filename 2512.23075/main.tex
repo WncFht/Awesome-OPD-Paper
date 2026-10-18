@@ -1,0 +1,50 @@
+\documentclass[UTF8,a4paper,11pt,fontset=none]{ctexart}
+\usepackage[margin=2.25cm]{geometry}
+\usepackage{fontspec}
+\setmainfont{Liberation Serif}
+\setsansfont{Liberation Sans}
+\setmonofont[Scale=0.86]{Liberation Mono}
+\setCJKmainfont[AutoFakeBold=2,AutoFakeSlant=0.18]{WenQuanYi Zen Hei}
+\setCJKsansfont[AutoFakeBold=2]{WenQuanYi Zen Hei}
+\setCJKmonofont{WenQuanYi Zen Hei Mono}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{xcolor,graphicx,adjustbox}
+\usepackage{caption,float,placeins}
+\usepackage{enumitem,listings}
+\usepackage[hyphens]{url}
+\usepackage[unicode,colorlinks=true,linkcolor=blue!55!black,urlcolor=blue!65!black]{hyperref}
+\usepackage{bookmark}
+\hypersetup{pdftitle={当速度扼杀稳定性：揭秘训练与推理不匹配引发的强化学习崩溃},pdfauthor={Jiacai Liu, Yingru Li, Yuqian Fu, Jiawei Wang, Qian Liu, Yu Shen}}
+\newcommand{\piv}{\textcolor{red!75!black}{\pi_\theta^{\mathrm{vllm}}}}
+\newcommand{\pif}{\textcolor{blue!75!black}{\pi_\theta^{\mathrm{fsdp}}}}
+\newcommand{\code}[1]{\texttt{\detokenize{#1}}}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.35em}
+\setlength{\emergencystretch}{2em}
+\setlist{nosep,leftmargin=2em,topsep=0.4em}
+\captionsetup{font=small,justification=justified,singlelinecheck=false}
+\lstset{basicstyle=\ttfamily\footnotesize,breaklines=true,columns=fullflexible,keepspaces=true,showstringspaces=false,frame=single,rulecolor=\color{black!20},xleftmargin=0.5em,xrightmargin=0.5em}
+\setcounter{tocdepth}{2}
+\pagestyle{plain}
+\title{\bfseries 当速度扼杀稳定性\\[0.4em]\Large 揭秘训练与推理不匹配引发的强化学习崩溃\\[0.5em]\large When Speed Kills Stability:\\Demystifying RL Collapse from the Training-Inference Mismatch}
+\author{Jiacai Liu \and Yingru Li \and Yuqian Fu \and Jiawei Wang \and Qian Liu \and Yu Shen}
+\date{原文首发：2025 年 9 月 17 日\\中文抓取译写版：2026 年 10 月 18 日}
+\begin{document}
+\maketitle
+\begin{quote}\small
+\textbf{译写说明。}本文根据作者公开 Notion 博客的完整页面快照翻译与重新排版，保留正文五节、更新动态、展开后的折叠推导、代码、原始配图及其链接。图内英文保留原样，图注译为中文。正文中的“我们”均指原作者。译注与原文区分标明。
+
+来源：\href{https://yingru.notion.site/When-Speed-Kills-Stability-Demystifying-RL-Collapse-from-the-Training-Inference-Mismatch-271211a558b7808d8b12d403fd15edda}{作者 Notion 页面}；作者短链：\url{https://richardli.xyz/rl-collapse}。目录采用原文关联的 arXiv ID 2512.23075；本稿翻译对象为该博客。
+
+作者信息按页面署名保留。原文 BibTeX 的最后一名作者为 Jiang, Zhuo，与页面署名中的 Yu Shen 不一致；引用块逐字保存，未擅自合并。
+\end{quote}
+\clearpage
+\tableofcontents
+\clearpage
+\input{sections/00_frontmatter}
+\input{sections/01_mystery}
+\input{sections/02_conflict}
+\input{sections/03_anatomy}
+\input{sections/04_mitigation}
+\input{sections/05_conclusion}
+\end{document}

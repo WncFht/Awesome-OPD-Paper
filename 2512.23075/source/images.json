@@ -1,0 +1,234 @@
+[
+  {
+    "block_id": "271211a5-58b7-8008-b8dd-de0e17512f6c",
+    "attachment": "attachment:caf852e3-1e3c-4b2a-86fe-bd5643085585:477e0062-c9df-4a17-a7c8-48cfa0e33e85.png",
+    "path": "figures/image-00.png",
+    "bytes": 1205781,
+    "sha256": "173714e6b74b2b010b74b318e761f7ab460a27a7896c46acc746411d6a8e20a1",
+    "caption": ""
+  },
+  {
+    "block_id": "271211a5-58b7-8065-b6d3-d50fe9986453",
+    "attachment": "attachment:587d1dc1-e85f-4f52-b9e4-cb0add22d33f:image.png",
+    "path": "figures/image-01.png",
+    "bytes": 153246,
+    "sha256": "4f5f410baaf2700a7e6b2989ae52788b648fce73f73d8fff424dcf583cbb60ab",
+    "caption": "***Figure 1****. Rewards (****Left ****) and gradient norms (****Right ****) from our four failed GRPO TIR experiments on Qwen3-14B-Base. All experiments sample **`1024`** trajectories (**`64`** prompts × **`16`** responses) at each training step and use a learning rate of **`1e-6`**. The **`ppo_mini_batch_size`** is set to **`1024`** and **`256`** for on-policy and off-policy experiments, respectively.*"
+  },
+  {
+    "block_id": "271211a5-58b7-8055-8f35-c4a618ee5fed",
+    "attachment": "attachment:3e26ea60-291f-470c-b2ec-79e7a8815f7f:image.png",
+    "path": "figures/image-02.png",
+    "bytes": 131867,
+    "sha256": "06f9213864c99b7c2e0febbb04bc7ba776573e1fff4473fc8b84fe3b6b505e81",
+    "caption": "***Figure 2****. Comparative presentation of an on-policy experiment result showing ****entropy ****(****Left****) and ****rewards ****(****Right****) alongside **`**vllm-kl**`** values, illustrating their correlation during the training phase. *"
+  },
+  {
+    "block_id": "271211a5-58b7-8012-87d3-ce3f15ed3061",
+    "attachment": "attachment:75ec2590-6262-4f85-980e-6ace686ceb18:image.png",
+    "path": "figures/image-03.png",
+    "bytes": 140257,
+    "sha256": "11d4a1564283ecfd6cd44bada37e0c5192c24fcd644a9ee531f775db719c64ac",
+    "caption": ""
+  },
+  {
+    "block_id": "271211a5-58b7-8046-aba6-f54c74a49cf2",
+    "attachment": "attachment:326f0bcd-8b71-45e1-94bd-532ff696dcaf:image.png",
+    "path": "figures/image-04.png",
+    "bytes": 202878,
+    "sha256": "29c342174e323b33ef85243c0300c39f897de42e7594990c07cccb17fbb3e4e6",
+    "caption": "***Figure 3****.  Results of  an on-policy experiment from step 200 - 280 (****Top****) and an off-policy experiment with clip-higher 0.28 (****Bottom****), showing ****gradient norm**** (****Left****), ****fsdp-ppl**** (****Middle ****) and ****rewards ****(****Right****)  alongside **`**vllm-kl**`** values, illustrating their correlation during the training.*"
+  },
+  {
+    "block_id": "271211a5-58b7-8025-976d-c69c3de0ef2d",
+    "attachment": "attachment:50ba6568-22a0-4e97-8694-2cdf595c590f:image.png",
+    "path": "figures/image-05.png",
+    "bytes": 160830,
+    "sha256": "0d6eb92c416d7ee6028b31afa6b857ecdbaef73b308bc9ab261e458a806af449",
+    "caption": "***Figure 4 (a)****.**** ****$\\textcolor{red}{\\pi^\\text{vllm}_\\theta}$**  vs **$\\log\\left(\\textcolor{blue}{\\pi^\\text{fsdp}_\\theta}\\right)-\\log\\left(\\textcolor{red}{\\pi^\\text{vllm}_\\theta}\\right)$** for tokens in the batches of group 1.*"
+  },
+  {
+    "block_id": "271211a5-58b7-8084-87e0-d30121785272",
+    "attachment": "attachment:a94ce922-399e-4e5e-b5a0-2ea829327d92:image.png",
+    "path": "figures/image-06.png",
+    "bytes": 490654,
+    "sha256": "a7900f5cd5166a624cfbf14461091bc061a99b5f5c4851552ed2d9b3134702db",
+    "caption": "***Figure 4 (b)****.**** ****$\\textcolor{red}{\\pi^\\text{vllm}_\\theta}$**  vs **$\\log\\left(\\textcolor{blue}{\\pi^\\text{fsdp}_\\theta}\\right)-\\log\\left(\\textcolor{red}{\\pi^\\text{vllm}_\\theta}\\right)$** for tokens in the batches of group 2.*"
+  },
+  {
+    "block_id": "271211a5-58b7-8092-a67e-f3089c4cf067",
+    "attachment": "attachment:07c17f9d-a95d-4906-9f38-37fb7785f10d:image.png",
+    "path": "figures/image-07.png",
+    "bytes": 738681,
+    "sha256": "eb0faf182eacd111a9fb2cecce6d0bfb21af836680e547463824289731c272ea",
+    "caption": "***Figure 4 (c).**** **$\\textcolor{red}{\\pi^\\text{vllm}_\\theta}$**  vs **$\\log\\left(\\textcolor{blue}{\\pi^\\text{fsdp}_\\theta}\\right)-\\log\\left(\\textcolor{red}{\\pi^\\text{vllm}_\\theta}\\right)$** for tokens in the batches of group 3.*"
+  },
+  {
+    "block_id": "271211a5-58b7-805e-af00-de25affd1d4a",
+    "attachment": "attachment:bc0b7b7c-303e-4f2a-8057-7869502244f1:image.png",
+    "path": "figures/image-08.png",
+    "bytes": 741058,
+    "sha256": "1d55502efa6ad158148f166a097d0a2bb4a699d92617021aa0bbd7b8709db644",
+    "caption": ""
+  },
+  {
+    "block_id": "271211a5-58b7-80cb-8597-da22a85d90da",
+    "attachment": "attachment:22407635-f255-4bed-a013-e82006179360:image.png",
+    "path": "figures/image-09.png",
+    "bytes": 1148445,
+    "sha256": "b5d4542e8781ff9f1109cddf2ebb9910291b514c3db6d90305af38ffc883d4f2",
+    "caption": ""
+  },
+  {
+    "block_id": "271211a5-58b7-8024-8265-c6f33580b3be",
+    "attachment": "attachment:14781d27-5729-46a4-a2ba-183cf4ba8237:image.png",
+    "path": "figures/image-10.png",
+    "bytes": 1317557,
+    "sha256": "ec67f8b37e18edbace776a364a1bab23ac6189fb06dc3074d3d06c73cde3f5aa",
+    "caption": ""
+  },
+  {
+    "block_id": "277211a5-58b7-80fc-844d-edb200c466dc",
+    "attachment": "attachment:8cf6f28b-06d3-4047-a400-f76637ac35ef:img_v3_02qd_02be3106-7f04-4a29-9e8c-6622066ae05g.jpg",
+    "path": "figures/image-11.jpg",
+    "bytes": 111247,
+    "sha256": "28aceadafd2b77eb09fe62af95558df30d14c9c13e89464b9c7d3eeb6f9b0494",
+    "caption": "***Figure 5. ****Gradient norm (Left), rewards (Middle)  and **`Vllm-kl`** metric (Right) of the off-policy GRPO experiments with different value of the hyperparameter **`max_tool_turn`** .  All the experiments were conducted on H20 GPUs, using Qwen3-14B-Base as the base model with clip higher=0.28 and 4 mini-batches.*"
+  },
+  {
+    "block_id": "277211a5-58b7-80ed-902c-f6a8bd68c885",
+    "attachment": "attachment:cc720a1d-2fcb-4d4c-825e-bca449c91680:img_v3_02qd_59fb5983-9cf2-4f00-850a-6cfab113c70g.jpg",
+    "path": "figures/image-12.jpg",
+    "bytes": 131548,
+    "sha256": "89daed9b19ad5a0dcc35298943f01b641fa17e4401a2dbe5f001697ec5fbf1a7",
+    "caption": "***Figure 6****. Maximum number of tool calls (Left) and average number of tool calls (Right)  of the off-policy GRPO experiments with different value of the hyperparameter **`max_tool_turn`**.  All the experiments were conducted on H20 GPUs, using Qwen3-14B-Base as the base model with clip higher=0.28 and 4 mini-batches.*"
+  },
+  {
+    "block_id": "271211a5-58b7-807d-b017-dc3d1d908ff8",
+    "attachment": "attachment:e2993a4b-b85a-47ca-98cf-4d9ee561e4c3:image.png",
+    "path": "figures/image-13.png",
+    "bytes": 199511,
+    "sha256": "25837bf2fbcdf6986e2cbf74e71bcbf739786dc48de05f9bb6b5df2590ed60c5",
+    "caption": "***Figure 7. ****`Vllm-kl`** metric (****Left****) and  rewards (****Right****) of the GRPO on-policy experiment across different GPUs.  All the experiments are conducted on the same code and environment.*"
+  },
+  {
+    "block_id": "271211a5-58b7-8039-b3b1-ddc62d10f463",
+    "attachment": "attachment:3d8c2fe5-2a70-452e-9a03-6e35922fe5ed:image.png",
+    "path": "figures/image-14.png",
+    "bytes": 119457,
+    "sha256": "cf04abd8c44f24d4ff5f0e31153932c4b78a29e5397fd9bddeb124b3eb7a333a",
+    "caption": "***Figure 8: ****Comparative results of the on-policy GRPO experiment between L20 and H20, showing the gradient norms (****Left)**** and rewards (****Right)****. We started the experiment on H20 GPUs (****green line****) from the checkpoint at the 200th training step of  the failed L20 experiment (****red line****)*"
+  },
+  {
+    "block_id": "271211a5-58b7-80db-ad92-f9d2ded4a453",
+    "attachment": "attachment:f5c1c6c7-a9d7-4dc1-a50a-b87ba87e2309:image.png",
+    "path": "figures/image-15.png",
+    "bytes": 293500,
+    "sha256": "1ee5636735bd78a8855ddc0a86e936eb9430daf31f54c2a1c02e54877d03e3b7",
+    "caption": "***Figure 9****.  The results of our on-policy “****batch-filter” ****experiment, showing **`**vllm-kl**`** (****Left****) and ****rewards ****(****Right****) with the training steps where batches are filtered out are highlighted in ****pink****. The filter threshold is set to 0.1.*"
+  },
+  {
+    "block_id": "271211a5-58b7-80eb-8c3c-fc81889860ed",
+    "attachment": "attachment:ea9db878-cccd-4f4c-ab5b-ce285897f17a:image.png",
+    "path": "figures/image-16.png",
+    "bytes": 144813,
+    "sha256": "fe8b874b1275ba7e7554e5b67a2eebd7b27c21da1011e459f9afe0a4e8009a9c",
+    "caption": "***Figure 10***.  The results of an on-policy experiment depict the `**vllm-kl**` and **fsdp-ppl** over training steps. The two lines exhibit a correlated, spiral-like upward pattern."
+  },
+  {
+    "block_id": "271211a5-58b7-80d3-98ac-fe024795f621",
+    "attachment": "attachment:44a6460c-5384-4cc3-9d65-9a15ff53dffe:image.png",
+    "path": "figures/image-17.png",
+    "bytes": 112013,
+    "sha256": "067c41f6749b778d4d14d2a07601f541b34910e52dd7f40cab8cb695283683e1",
+    "caption": "***Figure 11: ****Results of the ablation study on the precision of lm_head in ****vLLM ****engine.  ****Left****: The dynamics of **`vllm-kl`** metric. ****Right****: the dynamics of training rewards. We resume the RL training with ****fp32 lm_head **** from the 200th training step of  the failed experiment with ****bf16 lm_head***."
+  },
+  {
+    "block_id": "271211a5-58b7-8054-8c5b-d9ce67ee4d3d",
+    "attachment": "attachment:ea527799-bc4b-4c73-8f7b-b0881e1e5e68:image.png",
+    "path": "figures/image-18.png",
+    "bytes": 111262,
+    "sha256": "4a20e1d5431a2258b92e84b1986b41ebaf75f75c83b53e6695a27393c453b6c4",
+    "caption": "***Figure 12: ****Results of the ablation study on the using of chunked prefill.  We reran the RL training with **chunked prefill disabled**, starting from the 200th training step of the previously failed experiment conducted with **chunked prefill enabled**.* ***Left****: The dynamics of **`vllm-kl`** metric. ****Right****: the dynamics of training rewards.*"
+  },
+  {
+    "block_id": "271211a5-58b7-8084-b459-d4cd5f78014f",
+    "attachment": "attachment:8787d174-d52c-40d4-a669-6fda5866d0e8:img_v3_02q6_6448e044-312b-4d6e-9761-d8a86c27c91g.jpg",
+    "path": "figures/image-19.jpg",
+    "bytes": 159428,
+    "sha256": "54f2c2e31cfe08db7bf71b279e95f48f571b50a5b6f7cfed45a4c90f0e335674",
+    "caption": "***Figure 13****: Ablation study on ****vLLM****-acceleration-and-cache-related hyperparameters  in reasoning RL. We conducted on-policy GRPO experiments on H100 GPUs with four possible combinations of the hyperparameters **`enforce_eager`** (****E****) and **`free_cache_engine`** (****F****). ****Left****: The dynamics of **`vllm-kl`** metric. ****Right****: the dynamics of the accuracy on AIME24.*"
+  },
+  {
+    "block_id": "271211a5-58b7-8008-aab6-ca175a776bdd",
+    "attachment": "attachment:6e07f8c0-50bb-4418-8fa2-878ea8b5283b:image.png",
+    "path": "figures/image-20.png",
+    "bytes": 143862,
+    "sha256": "5ecdced63115244314b72c809e11d6ed911a4f798611aef12c1bbf6eddb0bd37",
+    "caption": "***Figure 14: ****Ablation study on the use of different TIS strategy.  The ****vanilla on-policy**** **experiment without IS crashes after 200 steps and experiences a gradient explosion. We resume the RL training with additional ****token-level TIS**** and ****sequence-level TIS****  strategy from the 200th training step, respectively.  ****Left****:  the dynamics of gradient norm during RL training. ****Right****: the dynamics of  training rewards during RL training.*"
+  },
+  {
+    "block_id": "271211a5-58b7-80a6-89b2-f5313ed260bf",
+    "attachment": "attachment:1f26fa51-8fbd-4822-957e-573f6a249773:img_v3_02q6_c62b54ca-eaa5-4519-95ef-652e3b2fa0eg.jpg",
+    "path": "figures/image-21.jpg",
+    "bytes": 125774,
+    "sha256": "13dee9f424975a18f93a22e0c01eb0304308d4f3b3aa3aa6a1291e714891d2b6",
+    "caption": "***Figure 15 (a):**** Gradient norm (****Left****) and accuracy on AIME 24 (****Right****) of on-policy GRPO experiments on H100 GPUs **without IS **and with** token-level IS (C=2) **in reasoning RL. Token-level TIS prevents training collapse but does not achieve better test performance.*"
+  },
+  {
+    "block_id": "27b211a5-58b7-80b6-8007-d80f67c22b85",
+    "attachment": "attachment:15dcdfb6-18f5-4b92-91de-fe32f3e4c7d0:img_v3_02qd_87d5ed2e-e1f2-4b43-9eb5-d52ad649685g.jpg",
+    "path": "figures/image-22.jpg",
+    "bytes": 141750,
+    "sha256": "64261ee8c6050eb498c5e7bfc2cda88fcd48842e0814e6789c02678fdfd3f411",
+    "caption": "***Figure 15 (b):**** Gradient norm (****Left****) and average accuracy on AIME 24 / AIME25 (****Right****) of on-policy RLOO experiments on H100 GPUs **without IS and with token-level IS (C=2)** **in reasoning RL. Token-level TIS mitigates training collapse but does not achieve better test performance. In the later stage, TIS has a tendency of performance dropping.*"
+  },
+  {
+    "block_id": "27b211a5-58b7-80aa-abaf-e901a524bca8",
+    "attachment": "attachment:29b647c0-8a80-4d69-8115-42ff5e4d33fb:image.png",
+    "path": "figures/image-23.png",
+    "bytes": 146177,
+    "sha256": "df747117875a1a0114c6fccf35466d7af8c6bd837f80fde03bd8f393d886dab1",
+    "caption": "***Figure 16: ****Ablation study on the use of different TIS strategy (Cont’d).  The ****vanilla on-policy**** **experiment without IS crashes after 200 steps. We reran the failed experiment from scratch using the same configuration, with the addition of  ****sequence-level TIS**** of  **$C=2$**.  ****Left****:  the dynamics of training rewards during RL training. ****Right****: the dynamics of  test accuracy during RL training.*"
+  },
+  {
+    "block_id": "27b211a5-58b7-808b-92f0-f53e0439f9d6",
+    "attachment": "attachment:07340732-81a9-4d0e-9dc8-0e2450a386b8:image.png",
+    "path": "figures/image-24.png",
+    "bytes": 159671,
+    "sha256": "c5e759403decc0d10c5ce88a0430af4cd7ced688081016f09d70168c69653f7b",
+    "caption": "***Figure 17: **** Comparison of on-policy GRPO with sequence level **MIS**, **TIS**, and the **vanilla version without IS.  **All three  experiments were conducted on L20 GPUs. Compared to the** vanilla on-policy** experiment, the introduction of both **MIS **and **TIS **extended the training duration, but both also suffered from training instability in the later stages. Compared to **TIS**, **MIS **shows  improvements in both training reward and test set accuracy, also surpassing the peak performance of the vanilla experiment without IS. ****Left****:  the dynamics of training rewards during RL training. ****Right****: the dynamics of  test accuracy during RL training.*"
+  },
+  {
+    "block_id": "27b211a5-58b7-80a9-9837-dc6b5f980e1b",
+    "attachment": "attachment:6269fa85-8a0c-40ab-8485-9238805b69ce:img_v3_02qb_d5ff66e7-2585-4275-a6f7-db4a65fbe60g.jpg",
+    "path": "figures/image-25.jpg",
+    "bytes": 134111,
+    "sha256": "0153eb4913fa0500b758be42f1f2d82711ebc12d2712088213ac7e06705a68cf",
+    "caption": "***Figure 18: **** Comparison of on-policy GRPO with **token-level MIS** **and **sequence-level MIS**.  **Both experiments were conducted on L20 GPUs and same configuration. ****Left****:  the dynamics of gradient norm during RL training. ****Right****: the dynamics of  training rewards during RL training.*"
+  },
+  {
+    "block_id": "271211a5-58b7-80a0-9f28-d37a3e81825e",
+    "attachment": "attachment:1acf0751-91d3-4fb3-b767-ab94f2e3fefa:image.png",
+    "path": "figures/image-26.png",
+    "bytes": 302945,
+    "sha256": "0ec9da7889b929ba799192581e639cc6233b7444743e485c74e7a364c5b1bed5",
+    "caption": "***Figure 19: ****Ablation study on the use of different **`top-p`** value in ****vLLM ****sampling policy during the RL training. We ran on-policy GRPO experiments  with **`top-p`** equals to 0.98, 0.99 and 0.999 respectively.  It can be observed that setting a smaller **`top-p`** value generally yields a smaller **`vllm-kl`** metric and slower reward improvement.  ****Left****:  the dynamics of **`vllm-kl`** metric during RL training. ****Right****: the dynamics of  training rewards during RL training. *"
+  },
+  {
+    "block_id": "271211a5-58b7-8095-9c63-f3bcc7bbef56",
+    "attachment": "attachment:43672dd3-9487-4fb3-9421-eaccbd5363c4:image.png",
+    "path": "figures/image-27.png",
+    "bytes": 199228,
+    "sha256": "0a615668c36e3fb5861f32d386d6aa32512ac925a91d5afbf6bb3f6ef984c359",
+    "caption": "***Figure 20***: *Training rewards (****Left****) and test accuracy (****Right****) of two on-policy GRPO experiments conducted on L20 and H20 GPUs, respectively. *"
+  },
+  {
+    "block_id": "27a211a5-58b7-8082-b200-d1681ccb6ceb",
+    "attachment": "attachment:b07c05e5-55f6-41d5-8538-90a8ecd7cf5e:image.png",
+    "path": "figures/image-28.png",
+    "bytes": 217555,
+    "sha256": "3c329eaeb7974a7df6a51e4dfb09de049ddf036fca60ff49c8dbf9b6a5ee40ba",
+    "caption": "***Figure 21****: Results of the ablation study on using cascade attention. We conducted two on-policy experiments on A100 GPUs: one with **cascade attention enabled **and another with the same configuration but with **cascade attention disabled**.. ****Left****: The dynamics of **`vllm-kl`** metric. ****Right****: the dynamics of training rewards*"
+  }
+]

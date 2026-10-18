@@ -1,0 +1,47 @@
+% Chinese translation assembled from source/blocks.json.
+
+% See source/translation.py for the translation and source/build_tex.py for assembly.
+
+% source-block: 271211a5-58b7-807d-aec4-ddd7af54a0b0 (header; source-index: 262)
+
+\hypertarget{src-271211a5-58b7-807d-aec4-ddd7af54a0b0}{}
+\section*{5. 结论与实践要点}
+\phantomsection
+\addcontentsline{toc}{section}{5. 结论与实践要点}
+
+
+% source-block: 277211a5-58b7-8082-b87c-f9ff4d540628 (text; source-index: 263)
+
+训练与推理不匹配是现代推理强化学习与智能体强化学习中一个基础性且不断加剧的挑战，其背后是对性能的持续追求。我们的研究为诊断与缓解这一问题提供了清晰路径。
+
+
+% source-block: 277211a5-58b7-801f-9a04-c7a042c03742 (bulleted_list; source-index: 264)
+
+\begin{itemize}
+
+\item \textbf{不匹配是一种不可避免的权衡。}应当接受高速推理与训练计算之间总会存在差异；这是一项核心权衡。
+
+% source-block: 277211a5-58b7-80b9-b4fd-f9f021aa562d (bulleted_list; source-index: 265)
+
+\item \textbf{监控训练健康状况。}\code{vllm-kl} 是重要的早期预警指标。应将它与困惑度和梯度范数一起追踪，以便在崩溃之前预测、诊断不稳定性。
+
+% source-block: 277211a5-58b7-804c-8ba9-f871c1bc24de (bulleted_list; source-index: 266)
+
+\item \textbf{识别真正的触发因素。}问题并非随机发生，而是由低概率词元系统性触发。当模型处理分布外输入时，这些词元出现得更频繁；工具使用和多轮应用中，这种场景十分常见。
+
+% source-block: 277211a5-58b7-805e-b7ee-f6c68cdddf4b (bulleted_list; source-index: 267)
+
+\item \textbf{硬件是关键变量。}同样的代码可能在一种 GPU 架构上崩溃，却在另一种架构上正常训练。应始终在目标硬件上验证配置，因为实验结果未必能完全迁移。
+
+% source-block: 277211a5-58b7-8092-8fb5-d43746fdd375 (bulleted_list; source-index: 268)
+
+\item \textbf{采用有理论依据的修正。}更换硬件或调整采样器可以提供帮助，而最稳健、有原理支撑的方案仍在算法层面。我们的工作表明，有理论偏差的词元级修正并不充分，在实验中仍可能失败。相比之下，序列级截断重要性采样（Seq-TIS）和掩码重要性采样（Seq-MIS）通过修正完整状态轨迹，直接处理梯度偏差。作者认为，这些方法对于维持稳定性至关重要，应作为严肃 LLM-RL 训练栈的默认考虑。
+
+\end{itemize}
+
+% source-block: 277211a5-58b7-8013-b186-f5d0c4c4b315 (text; source-index: 269)
+
+我们推测，推理引擎（如 vLLM）与训练框架（如 Megatron-LM）之间的不匹配，也将成为混合专家模型（MoE）强化学习的重要问题。这是未来值得研究的关键方向。
+
+
+% source-block: 278211a5-58b7-807a-b606-fa0c8a6818f8 (text; source-index: 270)

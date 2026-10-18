@@ -1,0 +1,36 @@
+{
+  "source_url": "https://yingru.notion.site/When-Speed-Kills-Stability-Demystifying-RL-Collapse-from-the-Training-Inference-Mismatch-271211a558b7808d8b12d403fd15edda",
+  "author_short_url": "https://richardli.xyz/rl-collapse",
+  "title_en": "When Speed Kills Stability: Demystifying RL Collapse from the Training-Inference Mismatch",
+  "title_zh": "当速度扼杀稳定性：揭秘训练与推理不匹配引发的强化学习崩溃",
+  "page_id": "271211a5-58b7-808d-8b12-d403fd15edda",
+  "captured_date": "2026-10-18",
+  "timezone": "Asia/Shanghai",
+  "page_last_edited_utc": "2026-02-24T13:26:34.904000+00:00",
+  "first_published": "2025-09-17",
+  "linked_arxiv_id": "2512.23075",
+  "translation_target": "Notion blog article, not the later arXiv paper",
+  "page_authors": [
+    "Jiacai Liu",
+    "Yingru Li",
+    "Yuqian Fu",
+    "Jiawei Wang",
+    "Qian Liu",
+    "Yu Shen"
+  ],
+  "original_bibtex_author_discrepancy": "The page lists Yu Shen, while its BibTeX block lists Jiang, Zhuo as the last author. Both are preserved as given.",
+  "rights": "Original article, code and images remain the property of their respective rights holders; no new license is asserted.",
+  "crawl": {
+    "page_chunks": 3,
+    "expanded_toggle_batches": 2,
+    "reachable_blocks": 271,
+    "images": 29,
+    "display_equations": 22,
+    "missing_referenced_blocks": 0
+  },
+  "translation_notes": [
+    "Original figure text remains in English; figure captions and body are translated into Chinese.",
+    "Original code and BibTeX are preserved verbatim.",
+    "Translator notes clarify unnormalized occupancy notation, advantage samples, bias of truncation/masking, the BF16 hypothesis, and the stability wording in Figure 17."
+  ]
+}

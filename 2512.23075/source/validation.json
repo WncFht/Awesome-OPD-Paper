@@ -1,0 +1,27 @@
+{
+  "compiler": "Tectonic 0.17.0",
+  "compile_success": true,
+  "pdf_pages": 30,
+  "embedded_images": 29,
+  "source_image_count": 29,
+  "source_block_coverage": 271,
+  "display_equations": 22,
+  "missing_glyphs": [],
+  "overfull_boxes": [],
+  "pdf_bookmarks": 17,
+  "pdf_links": 70,
+  "required_sections_present": true,
+  "equation_placeholders_absent": true,
+  "visual_check": "30-page contact sheet and enlarged title/formula/tool-response pages inspected",
+  "pdf_sha256": "ac1bacc650d2fe900d3c3578b2f75bb1cd15b60ce55d8c8fdb71a6ff18e360cd",
+  "font_dependencies": [
+    "WenQuanYi Zen Hei",
+    "WenQuanYi Zen Hei Mono",
+    "Liberation Serif",
+    "Liberation Sans",
+    "Liberation Mono"
+  ],
+  "local_readme_links": "all exist",
+  "english_snapshot_image_links": "29 links resolve",
+  "snapshot_checksums": "39 files match SHA-256 manifest"
+}

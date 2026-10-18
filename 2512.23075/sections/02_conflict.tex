@@ -1,0 +1,53 @@
+% Chinese translation assembled from source/blocks.json.
+
+% See source/translation.py for the translation and source/build_tex.py for assembly.
+
+% source-block: 271211a5-58b7-8068-bb2e-fda81fd79c4b (header; source-index: 44)
+
+\hypertarget{src-271211a5-58b7-8068-bb2e-fda81fd79c4b}{}
+\section*{2. 根本冲突：推理与训练之间不断扩大的差距}
+\phantomsection
+\addcontentsline{toc}{section}{2. 根本冲突：推理与训练之间不断扩大的差距}
+
+
+% source-block: 271211a5-58b7-8075-ad1d-e1c28508a69d (text; source-index: 45)
+
+轨迹生成（rollout）的速度是 LLM-RL 的核心瓶颈。为满足巨大的吞吐量需求，现代推理引擎（如 vLLM、SGLang、TensorRT-LLM）采用了激进的优化策略，包括推测解码、低精度计算（INT8/FP8），以及针对特定批量设置优化、计算随批量变化的 CUDA 内核。在维持采样保真度的同时，现代推理引擎的首要目标是最大化吞吐量，通常以每秒词元数衡量。
+
+训练框架（如 FSDP、DeepSpeed、Megatron-LM）则需要采取不同的权衡，优先保证梯度计算的数值稳定性与精度，往往为主权重和优化器状态使用 FP32 等更高精度格式。优化优先级与约束条件的不同，造成了不可避免的训练与推理不匹配。对更快 rollout 的持续追求正在扩大这一差距。
+
+有人可能会建议强制两端采用相同计算，例如使用\href{https://thinkingmachines.ai/blog/defeating-nondeterminism-in-llm-inference/}{“批量无关内核”}，但这些方案会带来严重的性能损失，削弱使用高速推理引擎的意义。速度与一致性之间的权衡，正是问题的核心，使其成为一个持续存在的挑战。
+
+
+% source-block: 271211a5-58b7-80ca-a1d1-d18bc503801a (text; source-index: 46)
+
+在我们的技术栈中，这种不匹配出现在 vLLM 推理采样器与 FSDP 训练器之间。实际执行的参数更新为：
+
+
+% source-block: 271211a5-58b7-805a-8edc-d856427744e3 (equation; source-index: 47)
+
+
+\[
+\adjustbox{max width=0.98\linewidth}{$\displaystyle \mathbb{E} _{x\sim \mathcal{D}}\mathbb{E} _{y\sim \textcolor{red}{\pi _{\theta}^{\mathrm{vllm}}}\left( \cdot |x \right)}\left[ R\left( x,y \right) \nabla _{\theta}\log \textcolor{blue}{\pi _{\theta}^{\mathrm{fsdp}}}\left( y|x \right) \right],$}
+\]
+
+
+% source-block: 271211a5-58b7-8075-8d39-edad869719ad (text; source-index: 48)
+
+而理论上应当使用的参数更新为：
+
+
+% source-block: 271211a5-58b7-8096-bc46-dbecb4d4e6e5 (equation; source-index: 49)
+
+
+\[
+\adjustbox{max width=0.98\linewidth}{$\displaystyle \mathbb{E} _{x\sim \mathcal{D}}\mathbb{E} _{y\sim \textcolor{blue}{\pi _{\theta}^{\mathrm{fsdp}}}\left( \cdot |x \right)}\left[ R\left( x,y \right) \nabla _{\theta}\log \textcolor{blue}{\pi _{\theta}^{\mathrm{fsdp}}}\left( y|x \right) \right].$}
+\]
+
+
+% source-block: 271211a5-58b7-8022-ab19-dc1c49af2929 (text; source-index: 50)
+
+其中，$x$ 是从分布 $\mathcal D$ 中采样的提示，$y$ 是响应，$R$ 是奖励函数，$\theta$ 是大语言模型参数，$\piv$ 与 $\pif$ 分别是由 vLLM 引擎和 FSDP 引擎实现的策略。要研究这一问题，我们首先需要一种度量方法。
+
+
+% source-block: 277211a5-58b7-80bb-8063-e98e153b97c9 (divider; source-index: 51)

@@ -1,0 +1,49 @@
+% Chinese translation assembled from source/blocks.json.
+
+% See source/translation.py for the translation and source/build_tex.py for assembly.
+
+% source-block: 271211a5-58b7-804d-b209-d12262749c7e (header; source-index: 35)
+
+\hypertarget{src-271211a5-58b7-804d-b209-d12262749c7e}{}
+\section*{1. 突然崩溃之谜}
+\phantomsection
+\addcontentsline{toc}{section}{1. 突然崩溃之谜}
+
+
+% source-block: 277211a5-58b7-8038-b454-fcd3581d713a (text; source-index: 36)
+
+大语言模型强化学习（LLM-RL）发展迅速，但一种令人困扰的突然训练崩溃现象正在出现。无论是复杂的推理强化学习，还是多轮智能体强化学习，许多人都观察到：训练在稳定学习一段时间后，会突然发生灾难性失败。
+
+
+% source-block: 277211a5-58b7-802c-90e3-f0072fb4f4f6 (text; source-index: 37)
+
+最近，我们在 Qwen3 模型上开展多轮工具集成推理（tool-integrated reasoning，TIR）的智能体强化学习实验时，亲身遇到了这个问题。在 L20 GPU 集群上，GRPO 算法的同策略和异策略变体均出现了这种情况。图 1 展示了四次 Qwen3-14B-Base 崩溃实验的奖励与梯度范数变化。随着训练进行，梯度范数突然爆炸，导致模型崩溃。我们最初排查了几个常见原因：
+
+
+% source-block: 277211a5-58b7-8046-a918-f05a425996a9 (bulleted_list; source-index: 38)
+
+\begin{itemize}
+
+\item 检查代码，确认智能体循环遵循词元输入、词元输出（token-in-token-out）的过程。
+
+% source-block: 277211a5-58b7-8058-b17d-ffc5b440e8cb (bulleted_list; source-index: 39)
+
+\item 调整 Adam 优化器的超参数 \code{beta1} 和 \code{beta2}。
+
+% source-block: 277211a5-58b7-8002-b0e4-cb7b0d947723 (bulleted_list; source-index: 40)
+
+\item 对优势值进行批量归一化，以平衡更新。
+
+% source-block: 277211a5-58b7-8066-a42e-ebf293d000c7 (text; source-index: 41)
+
+\ldots
+
+
+\end{itemize}
+
+% source-block: 277211a5-58b7-8093-83f9-e7226af53cb1 (text; source-index: 42)
+
+然而，这些常规修复均未奏效。由于连更简单的同策略实验也会失败，我们怀疑问题来自训练栈中更基础的部分。这促使我们研究现代 LLM-RL 中一个关键且日益普遍的挑战：高度优化的推理引擎与忠实执行训练计算的框架之间，存在不可避免的差距。
+
+
+% source-block: 277211a5-58b7-806b-ad86-d2218563a53a (divider; source-index: 43)
