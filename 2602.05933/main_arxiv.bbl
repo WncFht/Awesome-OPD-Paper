@@ -1,0 +1,305 @@
+\begin{thebibliography}{42}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Ahmadian et~al.(2024)Ahmadian, Cremer, Gall{\'e}, Fadaee, Kreutzer,
+  Pietquin, {\"U}st{\"u}n, and Hooker]{ahmadian2024back}
+Ahmadian, A., Cremer, C., Gall{\'e}, M., Fadaee, M., Kreutzer, J., Pietquin,
+  O., {\"U}st{\"u}n, A., and Hooker, S.
+\newblock Back to basics: Revisiting reinforce style optimization for learning
+  from human feedback in llms.
+\newblock \emph{arXiv preprint arXiv:2402.14740}, 2024.
+
+\bibitem[Alfano et~al.(2023)Alfano, Yuan, and Rebeschini]{alfano2023novel}
+Alfano, C., Yuan, R., and Rebeschini, P.
+\newblock A novel framework for policy mirror descent with general
+  parametrization and linear convergence.
+\newblock \emph{arXiv preprint arXiv:2301.13139}, 2023.
+
+\bibitem[Bai et~al.(2022)Bai, Kadavath, Kundu, Askell, Kernion, Jones, Chen,
+  Goldie, Mirhoseini, McKinnon, et~al.]{bai2022constitutional}
+Bai, Y., Kadavath, S., Kundu, S., Askell, A., Kernion, J., Jones, A., Chen, A.,
+  Goldie, A., Mirhoseini, A., McKinnon, C., et~al.
+\newblock Constitutional ai: Harmlessness from ai feedback.
+\newblock \emph{arXiv preprint arXiv:2212.08073}, 2022.
+
+\bibitem[Bartoldson et~al.(2025)Bartoldson, Venkatraman, Diffenderfer, Jain,
+  Ben-Nun, Lee, Kim, Obando-Ceron, Bengio, and
+  Kailkhura]{bartoldson2025trajectory}
+Bartoldson, B., Venkatraman, S., Diffenderfer, J., Jain, M., Ben-Nun, T., Lee,
+  S., Kim, M., Obando-Ceron, J., Bengio, Y., and Kailkhura, B.
+\newblock Trajectory balance with asynchrony: Decoupling exploration and
+  learning for fast, scalable llm post-training.
+\newblock \emph{arXiv preprint arXiv:2503.18929}, 2025.
+
+\bibitem[Chen et~al.(2025)Chen, Li, Gong, Jiang, Fei, Yang, Shan, Yu, Wang,
+  Zhu, et~al.]{chen2025minimax}
+Chen, A., Li, A., Gong, B., Jiang, B., Fei, B., Yang, B., Shan, B., Yu, C.,
+  Wang, C., Zhu, C., et~al.
+\newblock Minimax-m1: Scaling test-time compute efficiently with lightning
+  attention.
+\newblock \emph{arXiv preprint arXiv:2506.13585}, 2025.
+
+\bibitem[Foster \& Rakhlin(2023)Foster and Rakhlin]{foster2023foundations}
+Foster, D.~J. and Rakhlin, A.
+\newblock Foundations of reinforcement learning and interactive decision
+  making.
+\newblock \emph{arXiv preprint arXiv:2312.16730}, 2023.
+
+\bibitem[Fu et~al.(2025)Fu, Gao, Shen, Zhu, Mei, He, Xu, Wei, Mei, Wang,
+  et~al.]{fu2025areal}
+Fu, W., Gao, J., Shen, X., Zhu, C., Mei, Z., He, C., Xu, S., Wei, G., Mei, J.,
+  Wang, J., et~al.
+\newblock Areal: A large-scale asynchronous reinforcement learning system for
+  language reasoning.
+\newblock \emph{arXiv preprint arXiv:2505.24298}, 2025.
+
+\bibitem[Gao et~al.(2024)Gao, Chang, Zhan, Oertell, Swamy, Brantley, Joachims,
+  Bagnell, Lee, and Sun]{gao2024rebel}
+Gao, Z., Chang, J., Zhan, W., Oertell, O., Swamy, G., Brantley, K., Joachims,
+  T., Bagnell, D., Lee, J.~D., and Sun, W.
+\newblock Rebel: Reinforcement learning via regressing relative rewards.
+\newblock \emph{Advances in Neural Information Processing Systems},
+  37:\penalty0 52354--52400, 2024.
+
+\bibitem[Geist et~al.(2019)Geist, Scherrer, and Pietquin]{geist2019theory}
+Geist, M., Scherrer, B., and Pietquin, O.
+\newblock A theory of regularized markov decision processes.
+\newblock In \emph{International conference on machine learning}, pp.\
+  2160--2169. PMLR, 2019.
+
+\bibitem[Google(2025)]{google2025gemini}
+Google.
+\newblock Gemini 2.5: Pushing the frontier with advanced reasoning,
+  multimodality, long context, and next generation agentic capabilities.
+\newblock \emph{arXiv preprint arXiv:2507.06261}, 2025.
+
+\bibitem[Guo et~al.(2025)Guo, Yang, Zhang, Song, Wang, Zhu, Xu, Zhang, Ma, Bi,
+  et~al.]{guo2025deepseek}
+Guo, D., Yang, D., Zhang, H., Song, J., Wang, P., Zhu, Q., Xu, R., Zhang, R.,
+  Ma, S., Bi, X., et~al.
+\newblock Deepseek-r1 incentivizes reasoning in llms through reinforcement
+  learning.
+\newblock \emph{Nature}, 645\penalty0 (8081):\penalty0 633--638, 2025.
+
+\bibitem[Huang et~al.(2024)Huang, Zhan, Xie, Lee, Sun, Krishnamurthy, and
+  Foster]{huang2024correcting}
+Huang, A., Zhan, W., Xie, T., Lee, J.~D., Sun, W., Krishnamurthy, A., and
+  Foster, D.~J.
+\newblock Correcting the mythos of kl-regularization: Direct alignment without
+  overoptimization via chi-squared preference optimization.
+\newblock \emph{arXiv preprint arXiv:2407.13399}, 2024.
+
+\bibitem[Lambert et~al.(2024)Lambert, Morrison, Pyatkin, Huang, Ivison,
+  Brahman, Miranda, Liu, Dziri, Lyu, et~al.]{lambert2024tulu}
+Lambert, N., Morrison, J., Pyatkin, V., Huang, S., Ivison, H., Brahman, F.,
+  Miranda, L. J.~V., Liu, A., Dziri, N., Lyu, S., et~al.
+\newblock Tulu 3: Pushing frontiers in open language model post-training.
+\newblock \emph{arXiv preprint arXiv:2411.15124}, 2024.
+
+\bibitem[Lan(2023)]{lan2023policy}
+Lan, G.
+\newblock Policy mirror descent for reinforcement learning: Linear convergence,
+  new sampling complexity, and generalized problem classes.
+\newblock \emph{Mathematical programming}, 198\penalty0 (1):\penalty0
+  1059--1106, 2023.
+
+\bibitem[Liu et~al.(2025)Liu, Li, Fu, Wang, Liu, and
+  Jiang]{liu-li-2025-rl-collapse}
+Liu, J., Li, Y., Fu, Y., Wang, J., Liu, Q., and Jiang, Z.
+\newblock When speed kills stability: Demystifying {RL} collapse from the
+  training-inference mismatch, September 2025.
+\newblock URL \url{https://richardli.xyz/rl-collapse}.
+
+\bibitem[Nachum et~al.(2017)Nachum, Norouzi, Xu, and
+  Schuurmans]{nachum2017bridging}
+Nachum, O., Norouzi, M., Xu, K., and Schuurmans, D.
+\newblock Bridging the gap between value and policy based reinforcement
+  learning.
+\newblock \emph{NeurIPS}, 30, 2017.
+
+\bibitem[Nemirovski \& Yudin(1983)Nemirovski and Yudin]{nemirovski1983problem}
+Nemirovski, A.~S. and Yudin, D.~B.
+\newblock \emph{Problem Complexity and Method Efficiency in Optimization}.
+\newblock John Wiley \& Sons, 1983.
+
+\bibitem[Noukhovitch et~al.(2024)Noukhovitch, Huang, Xhonneux, Hosseini,
+  Agarwal, and Courville]{noukhovitch2024asynchronous}
+Noukhovitch, M., Huang, S., Xhonneux, S., Hosseini, A., Agarwal, R., and
+  Courville, A.
+\newblock Asynchronous rlhf: Faster and more efficient off-policy rl for
+  language models.
+\newblock \emph{arXiv preprint arXiv:2410.18252}, 2024.
+
+\bibitem[OpenAI(2024)]{jaech2024openai}
+OpenAI.
+\newblock Openai o1 system card.
+\newblock \emph{arXiv preprint arXiv:2412.16720}, 2024.
+
+\bibitem[Ouyang et~al.(2022)Ouyang, Wu, Jiang, Almeida, Wainwright, Mishkin,
+  Zhang, Agarwal, Slama, Ray, et~al.]{ouyang2022training}
+Ouyang, L., Wu, J., Jiang, X., Almeida, D., Wainwright, C., Mishkin, P., Zhang,
+  C., Agarwal, S., Slama, K., Ray, A., et~al.
+\newblock Training language models to follow instructions with human feedback.
+\newblock \emph{NeurIPS}, 35, 2022.
+
+\bibitem[Rafailov et~al.(2023)Rafailov, Sharma, Mitchell, Manning, Ermon, and
+  Finn]{rafailov2023direct}
+Rafailov, R., Sharma, A., Mitchell, E., Manning, C.~D., Ermon, S., and Finn, C.
+\newblock Direct preference optimization: Your language model is secretly a
+  reward model.
+\newblock \emph{Advances in neural information processing systems},
+  36:\penalty0 53728--53741, 2023.
+
+\bibitem[Richemond et~al.(2024)Richemond, Tang, Guo, Calandriello, Azar,
+  Rafailov, Pires, Tarassov, Spangher, Ellsworth, et~al.]{richemond2024offline}
+Richemond, P.~H., Tang, Y., Guo, D., Calandriello, D., Azar, M.~G., Rafailov,
+  R., Pires, B.~A., Tarassov, E., Spangher, L., Ellsworth, W., et~al.
+\newblock Offline regularised reinforcement learning for large language models
+  alignment.
+\newblock \emph{arXiv preprint arXiv:2405.19107}, 2024.
+
+\bibitem[Schulman et~al.(2015)Schulman, Levine, Abbeel, Jordan, and
+  Moritz]{schulman2015trust}
+Schulman, J., Levine, S., Abbeel, P., Jordan, M., and Moritz, P.
+\newblock Trust region policy optimization.
+\newblock In \emph{International conference on machine learning}, pp.\
+  1889--1897. PMLR, 2015.
+
+\bibitem[Schulman et~al.(2017)Schulman, Wolski, Dhariwal, Radford, and
+  Klimov]{schulman2017proximal}
+Schulman, J., Wolski, F., Dhariwal, P., Radford, A., and Klimov, O.
+\newblock Proximal policy optimization algorithms.
+\newblock \emph{arXiv preprint arXiv:1707.06347}, 2017.
+
+\bibitem[Shao et~al.(2024)Shao, Wang, Zhu, Xu, Song, Bi, Zhang, Zhang, Li, Wu,
+  et~al.]{shao2024deepseekmath}
+Shao, Z., Wang, P., Zhu, Q., Xu, R., Song, J., Bi, X., Zhang, H., Zhang, M.,
+  Li, Y., Wu, Y., et~al.
+\newblock Deepseekmath: Pushing the limits of mathematical reasoning in open
+  language models.
+\newblock \emph{arXiv preprint arXiv:2402.03300}, 2024.
+
+\bibitem[Sheng et~al.(2025)Sheng, Zhang, Ye, Wu, Zhang, Zhang, Peng, Lin, and
+  Wu]{sheng2025hybridflow}
+Sheng, G., Zhang, C., Ye, Z., Wu, X., Zhang, W., Zhang, R., Peng, Y., Lin, H.,
+  and Wu, C.
+\newblock Hybridflow: A flexible and efficient rlhf framework.
+\newblock In \emph{Proceedings of the Twentieth European Conference on Computer
+  Systems}, pp.\  1279--1297, 2025.
+
+\bibitem[Sutton et~al.(1999)Sutton, McAllester, Singh, and
+  Mansour]{sutton1999policy}
+Sutton, R.~S., McAllester, D., Singh, S., and Mansour, Y.
+\newblock Policy gradient methods for reinforcement learning with function
+  approximation.
+\newblock \emph{NeurIPS}, 12, 1999.
+
+\bibitem[Team et~al.(2025{\natexlab{a}})Team, Bai, Bao, Chen, Chen, Chen, Chen,
+  Chen, Chen, Chen, et~al.]{team2025kimik20}
+Team, K., Bai, Y., Bao, Y., Chen, G., Chen, J., Chen, N., Chen, R., Chen, Y.,
+  Chen, Y., Chen, Y., et~al.
+\newblock Kimi k2: Open agentic intelligence.
+\newblock \emph{arXiv preprint arXiv:2507.20534}, 2025{\natexlab{a}}.
+
+\bibitem[Team et~al.(2025{\natexlab{b}})Team, Du, Gao, Xing, Jiang, Chen, Li,
+  Xiao, Du, Liao, et~al.]{team2025kimik15}
+Team, K., Du, A., Gao, B., Xing, B., Jiang, C., Chen, C., Li, C., Xiao, C., Du,
+  C., Liao, C., et~al.
+\newblock Kimi k1.5: Scaling reinforcement learning with llms.
+\newblock \emph{arXiv preprint arXiv:2501.12599}, 2025{\natexlab{b}}.
+
+\bibitem[Tomar et~al.(2022)Tomar, Shani, Efroni, and Ghavamzadeh]{tomarmirror}
+Tomar, M., Shani, L., Efroni, Y., and Ghavamzadeh, M.
+\newblock Mirror descent policy optimization.
+\newblock In \emph{International Conference on Learning Representations}, 2022.
+
+\bibitem[Wang et~al.(2023)Wang, Jiang, Yang, Liu, and Chen]{wang2023beyond}
+Wang, C., Jiang, Y., Yang, C., Liu, H., and Chen, Y.
+\newblock Beyond reverse kl: Generalizing direct preference optimization with
+  diverse divergence constraints.
+\newblock \emph{arXiv preprint arXiv:2309.16240}, 2023.
+
+\bibitem[Williams(1992)]{williams1992simple}
+Williams, R.~J.
+\newblock Simple statistical gradient-following algorithms for connectionist
+  reinforcement learning.
+\newblock \emph{Machine learning}, 8\penalty0 (3):\penalty0 229--256, 1992.
+
+\bibitem[Xiao(2022)]{xiao2022convergence}
+Xiao, L.
+\newblock On the convergence rates of policy gradient methods.
+\newblock \emph{Journal of Machine Learning Research}, 23\penalty0
+  (282):\penalty0 1--36, 2022.
+
+\bibitem[Xu et~al.(2024)Xu, Ji, Chen, Wang, and Zhao]{xu2024sample}
+Xu, Z., Ji, X., Chen, M., Wang, M., and Zhao, T.
+\newblock Sample complexity of neural policy mirror descent for policy
+  optimization on low-dimensional manifolds.
+\newblock \emph{Journal of Machine Learning Research}, 25\penalty0
+  (226):\penalty0 1--67, 2024.
+
+\bibitem[Yang et~al.(2024)Yang, Yang, Zhang, Hui, Zheng, Yu, Li, Liu, Huang,
+  Wei, Lin, Yang, Tu, Zhang, Yang, Yang, Zhou, Lin, Dang, Lu, Bao, Yang, Yu,
+  Li, Xue, Zhang, Zhu, Men, Lin, Li, Xia, Ren, Ren, Fan, Su, Zhang, Wan, Liu,
+  Cui, Zhang, and Qiu]{qwen2.5}
+Yang, A., Yang, B., Zhang, B., Hui, B., Zheng, B., Yu, B., Li, C., Liu, D.,
+  Huang, F., Wei, H., Lin, H., Yang, J., Tu, J., Zhang, J., Yang, J., Yang, J.,
+  Zhou, J., Lin, J., Dang, K., Lu, K., Bao, K., Yang, K., Yu, L., Li, M., Xue,
+  M., Zhang, P., Zhu, Q., Men, R., Lin, R., Li, T., Xia, T., Ren, X., Ren, X.,
+  Fan, Y., Su, Y., Zhang, Y., Wan, Y., Liu, Y., Cui, Z., Zhang, Z., and Qiu, Z.
+\newblock Qwen2.5 technical report.
+\newblock \emph{arXiv preprint arXiv:2412.15115}, 2024.
+
+\bibitem[Yang et~al.(2025)Yang, Li, Yang, Zhang, Hui, Zheng, Yu, Gao, Huang,
+  Lv, et~al.]{yang2025qwen3}
+Yang, A., Li, A., Yang, B., Zhang, B., Hui, B., Zheng, B., Yu, B., Gao, C.,
+  Huang, C., Lv, C., et~al.
+\newblock Qwen3 technical report.
+\newblock \emph{arXiv preprint arXiv:2505.09388}, 2025.
+
+\bibitem[Yao et~al.(2025)Yao, Liu, Zhang, Dong, Shang, and
+  Gao]{yao2025offpolicy}
+Yao, F., Liu, L., Zhang, D., Dong, C., Shang, J., and Gao, J.
+\newblock Your efficient rl framework secretly brings you off-policy rl
+  training, August 2025.
+\newblock URL \url{https://fengyao.notion.site/off-policy-rl}.
+
+\bibitem[Yu et~al.(2025)Yu, Zhang, Zhu, Yuan, Zuo, Yue, Dai, Fan, Liu, Liu,
+  et~al.]{yu2025dapo}
+Yu, Q., Zhang, Z., Zhu, R., Yuan, Y., Zuo, X., Yue, Y., Dai, W., Fan, T., Liu,
+  G., Liu, L., et~al.
+\newblock Dapo: An open-source llm reinforcement learning system at scale.
+\newblock \emph{arXiv preprint arXiv:2503.14476}, 2025.
+
+\bibitem[Yuan et~al.(2023)Yuan, Du, Gower, Lazaric, and Xiao]{yuan2023linear}
+Yuan, R., Du, S.~S., Gower, R.~M., Lazaric, A., and Xiao, L.
+\newblock Linear convergence of natural policy gradient methods with log-linear
+  policies.
+\newblock In \emph{ICLR}, 2023.
+
+\bibitem[Zhan et~al.(2023)Zhan, Cen, Huang, Chen, Lee, and Chi]{zhan2023policy}
+Zhan, W., Cen, S., Huang, B., Chen, Y., Lee, J.~D., and Chi, Y.
+\newblock Policy mirror descent for regularized reinforcement learning: A
+  generalized framework with linear convergence.
+\newblock \emph{SIAM Journal on Optimization}, 33\penalty0 (2):\penalty0
+  1061--1091, 2023.
+
+\bibitem[Zheng et~al.(2025)Zheng, Liu, Li, Chen, Yu, Gao, Dang, Liu, Men, Yang,
+  et~al.]{zheng2025group}
+Zheng, C., Liu, S., Li, M., Chen, X.-H., Yu, B., Gao, C., Dang, K., Liu, Y.,
+  Men, R., Yang, A., et~al.
+\newblock Group sequence policy optimization.
+\newblock \emph{arXiv preprint arXiv:2507.18071}, 2025.
+
+\bibitem[Ziegler et~al.(2019)Ziegler, Stiennon, Wu, Brown, Radford, Amodei,
+  Christiano, and Irving]{ziegler2019fine}
+Ziegler, D.~M., Stiennon, N., Wu, J., Brown, T.~B., Radford, A., Amodei, D.,
+  Christiano, P., and Irving, G.
+\newblock Fine-tuning language models from human preferences.
+\newblock \emph{arXiv preprint arXiv:1909.08593}, 2019.
+
+\end{thebibliography}

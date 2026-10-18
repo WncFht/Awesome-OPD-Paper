@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2025)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main_arxiv.aux
+The style file: bibstyle.bst
+Database file #1: ref.bib
+Warning--entry type for "liu-li-2025-rl-collapse" isn't style-file defined
+--line 149 of file ref.bib
+You've used 42 entries,
+            2773 wiz_defined-function locations,
+            797 strings with 15157 characters,
+and the built_in function-call counts, 28403 in all, are:
+= -- 2181
+> -- 2965
+< -- 10
++ -- 997
+- -- 954
+* -- 2682
+:= -- 4695
+add.period$ -- 128
+call.type$ -- 42
+change.case$ -- 430
+chr.to.int$ -- 41
+cite$ -- 84
+duplicate$ -- 887
+empty$ -- 1484
+format.name$ -- 1000
+if$ -- 5620
+int.to.chr$ -- 2
+int.to.str$ -- 1
+missing$ -- 41
+newline$ -- 218
+num.names$ -- 168
+pop$ -- 869
+preamble$ -- 1
+purify$ -- 389
+quote$ -- 0
+skip$ -- 870
+stack$ -- 0
+substring$ -- 422
+swap$ -- 84
+text.length$ -- 3
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 457
+warning$ -- 0
+while$ -- 151
+width$ -- 0
+write$ -- 527
+(There was 1 warning)
