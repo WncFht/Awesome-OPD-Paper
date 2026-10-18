@@ -1,0 +1,33 @@
+\section{背景与相关工作}
+\label{sec:background}
+
+\subsection{训练与推理不匹配的来源}
+
+\Cref{eq:policy_grad} 中的原始策略梯度恒等式仅在用于计算梯度的策略与生成轨迹的策略相同时才成立。  
+然而，在实际应用中，轨迹由 \textbf{采样器 $\bm{q_\theta}$ } 生成，而梯度则通过 \textbf{训练器 $\bm{p_\theta}$ } 计算。  
+因此，当 $q_\theta \ne p_\theta$ 时会出现训练-推理不匹配问题。
+
+TIM 的来源有很多，每种来源的严重程度各不相同。最严重的情况下，训练引擎和推理引擎以不同的精度运行，或基于两个独立的代码库，每个代码库都可能存在不同（难以检测）的错误，从而导致输出存在细微差异 \citep{speed_kills_stability, flashinfer_sentinel}。  
+在较轻微的情况下，即使两个引擎都是正确的，并且使用相同的 GPU 内核，由于浮点运算的非结合性，仍可能产生不同的输出。\footnote{例如，在 \texttt{fp4\_e2m1} 精度下，$(0.5+0.5)+2=3$ ，但 $0.5+(0.5+2)=2$ 。}
+由于采样是自回归的，而训练通常在序列维度上并行化，训练和推理引擎可能会以不同的输入形状调用相同的内核，从而改变归约的顺序，导致微小的浮点差异。  
+批量不变内核消除了对输入形状的依赖，但需要大量的工程工作，并导致GPU利用率下降 \citep{thinky_nondeterminism}。  
+将两个引擎的精度从bf16切换到fp16也能显著减少不匹配 \citep{fp16_rl}，但无法完全消除。
+
+最后，即使训练器和生成器使用相同的批量不变内核，由于更新延迟仍可能导致TIM的发生。  
+在强化学习中实现高GPU利用率需要解耦训练与推理引擎，异步运行它们 \citep{areal}，并通过连续批量处理回放数据 \citep{orca}。  
+这意味着单个训练批次，甚至单个回放序列的不同子序列，都可能来自不同的模型检查点 \citep{pipelineRL}。  
+在长上下文环境（如Agentic编程）中，延迟问题尤为严重，某些回合可能在几分钟内完成，而其他回合则可能持续数小时甚至数天 \citep{single_rollout}。  
+从硬件利用率的角度来看，算法性地稳定使用过时回放数据的训练过程，比试图完全消除延迟更为可取 \citep{areal}。
+
+我们的目标是提出一种在TIM下的稳定强化学习训练方法，以实现高硬件利用率的同时确保训练的稳定性。
+
+\subsection{重要性采样修正}
+
+假设在 \Cref{eq:policy_grad} 中，轨迹来自采样器 $q_\theta$，而非训练器 $p_\theta$，其中 $q_\theta \ne p_\theta$。那么我们可以使用重要性采样（IS）确切地纠正训练-推理不匹配：
+\begin{equation}
+\nabla_\theta \, \mathbb{E}_{p_\theta}[R] = \mathbb{E}_{p_\theta} \left[ R \, \nabla_\theta \log p_\theta(y) \right] = \mathbb{E}_{q_\theta} \left[ \frac{p_\theta(y)}{q_\theta(y)} R \, \nabla_\theta \log p_\theta(y) \right].
+\label{eq:policy_grad_is}
+\end{equation}
+\Cref{eq:policy_grad_is} 适用于完整序列；在实际应用中，该比例通常按每个 \citep{gspo} 应用。无论哪种方式，重要性采样都会修正 TIM，但代价是方差增加。加权得分会乘以重要性比例 $r = \frac{p_\theta(y)}{q_\theta(y)}$，该比例在罕见的 \citep{gspo} 上可能取任意大的值，从而放大梯度估计的方差 \citep{ionides, owen_mc}。由于使用原始的重要性比例进行训练不稳定，实践中采用的方法会对重要性比例进行限制，这不可避免地引入了偏差。
+
+\Cref{tab:is_methods}（在 \Cref{sec:is_methods} 中）表明，大多数流行的修正方法基于重要性采样，并落在一个简单的网格上，其具体形式取决于重要性比率被截断或掩码的区域。一个显著的异常值是 DPPO，它使用基于二值总变差的掩码区域——但其目标函数仍然使用重要性采样比率，与其他网格中的所有方法一样。超越表格范围，\citet{alp} 将可学习的扰动注入训练器的隐状态，并将扰动后的策略作为重要性比率的分子——通过减少比率的重尾而非截断来改进——但仍依赖于重要性采样。相比之下，\textit{得分中心化}（我们在 \Cref{sec:sc} 中提出的方法）完全不使用重要性比率、不进行掩码、也不进行截断——它是一个加性修正项，从根本上区别于该网格中的每一种方法。

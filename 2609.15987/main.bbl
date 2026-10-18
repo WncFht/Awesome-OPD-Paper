@@ -1,0 +1,237 @@
+\begin{thebibliography}{10}
+
+\bibitem{shao2024deepseekmath}
+Zhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu, Junxiao Song, Xiao Bi, Haowei
+  Zhang, Mingchuan Zhang, YK~Li, Yang Wu, et~al.
+\newblock Deepseekmath: Pushing the limits of mathematical reasoning in open
+  language models.
+\newblock {\em arXiv preprint arXiv:2402.03300}, 2024.
+
+\bibitem{guo2025deepseek}
+Daya Guo, Dejian Yang, Haowei Zhang, Junxiao Song, Peiyi Wang, Qihao Zhu,
+  Runxin Xu, Ruoyu Zhang, Shirong Ma, Xiao Bi, et~al.
+\newblock Deepseek-r1: Incentivizing reasoning capability in llms via
+  reinforcement learning.
+\newblock {\em arXiv preprint arXiv:2501.12948}, 2025.
+
+\bibitem{yang2025qwen3}
+An~Yang, Anfeng Li, Baosong Yang, Beichen Zhang, Binyuan Hui, Bo~Zheng, Bowen
+  Yu, Chang Gao, Chengen Huang, Chenxu Lv, et~al.
+\newblock Qwen3 technical report.
+\newblock {\em arXiv preprint arXiv:2505.09388}, 2025.
+
+\bibitem{yu2026dapo}
+Qiying Yu, Zheng Zhang, Ruofei Zhu, Yufeng Yuan, Xiaochen Zuo, Yu~Yue, Weinan
+  Dai, Tiantian Fan, Gaohong Liu, Lingjun Liu, et~al.
+\newblock Dapo: An open-source llm reinforcement learning system at scale.
+\newblock {\em Advances in Neural Information Processing Systems},
+  38:113222--113244, 2026.
+
+\bibitem{abdin2025phi}
+Marah Abdin, Sahaj Agarwal, Ahmed Awadallah, Vidhisha Balachandran, Harkirat
+  Behl, Lingjiao Chen, Gustavo de~Rosa, Suriya Gunasekar, Mojan Javaheripi,
+  Neel Joshi, et~al.
+\newblock Phi-4-reasoning technical report.
+\newblock {\em arXiv preprint arXiv:2504.21318}, 2025.
+
+\bibitem{wen2026reinforcement}
+Xumeng Wen, Zihan Liu, Shun Zheng, Shengyu Ye, Zhirong Wu, Yang Wang, Zhijian
+  Xu, Xiao Liang, Junjie Li, Ziming Miao, et~al.
+\newblock Reinforcement learning with verifiable rewards implicitly
+  incentivizes correct reasoning in base llms.
+\newblock In {\em International Conference on Learning Representations}, volume
+  2026, pages 49450--49483, 2026.
+
+\bibitem{zheng2025gspo}
+Chujie Zheng, Shixuan Liu, Mingze Li, Xiong-Hui Chen, Bowen Yu, Chang Gao, Kai
+  Dang, Yuqiong Liu, Rui Men, An~Yang, Jingren Zhou, and Junyang Lin.
+\newblock Group sequence policy optimization.
+\newblock {\em arXiv preprint arXiv:2507.18071}, 2025.
+
+\bibitem{qi2026rethinking}
+Penghui Qi, Xiangxin Zhou, Zichen Liu, Tianyu Pang, Chao Du, Min Lin, and
+  Wee~Sun Lee.
+\newblock Rethinking the trust region in llm reinforcement learning.
+\newblock {\em arXiv preprint arXiv:2602.04879}, 2026.
+
+\bibitem{ma2026fipo}
+Chiyu Ma, Shuo Yang, Kexin Huang, Jinda Lu, Haoming Meng, Shangshang Wang,
+  Bolin Ding, Soroush Vosoughi, Guoyin Wang, and Jingren Zhou.
+\newblock Fipo: Eliciting deep reasoning with future-kl influenced policy
+  optimization.
+\newblock {\em arXiv preprint arXiv:2603.19835}, 2026.
+
+\bibitem{mao2026beyond}
+Renjie Mao, Xiangxin Zhou, Lvfang Tao, Yixin Ding, Yu~Shi, Yongguang Lin,
+  Yuheng Wu, Honglin Zhu, Qian Qiu, and Wenxi Zhu.
+\newblock Beyond uniform token-level trust region in llm reinforcement
+  learning.
+\newblock {\em arXiv preprint arXiv:2606.10968}, 2026.
+
+\bibitem{kang2026vimpo}
+Zhewei Kang, Aosong Feng, Sergey Levine, Dawn Song, and Xuandong Zhao.
+\newblock Vimpo: Value-implicit policy optimization for llms.
+\newblock {\em arXiv preprint arXiv:2606.20008}, 2026.
+
+\bibitem{liu2025understanding}
+Zichen Liu, Changyu Chen, Wenjun Li, Penghui Qi, Tianyu Pang, Chao Du, Wee~Sun
+  Lee, and Min Lin.
+\newblock Understanding r1-zero-like training: A critical perspective.
+\newblock {\em arXiv preprint arXiv:2503.20783}, 2025.
+
+\bibitem{chen2025minimax}
+Aili Chen, Aonian Li, Bangwei Gong, Binyang Jiang, Bo~Fei, Bo~Yang, Boji Shan,
+  Changqing Yu, Chao Wang, Cheng Zhu, et~al.
+\newblock Minimax-m1: Scaling test-time compute efficiently with lightning
+  attention.
+\newblock {\em arXiv preprint arXiv:2506.13585}, 2025.
+
+\bibitem{zhang2026design}
+Yifan Zhang, Yifeng Liu, Rina Hughes, Yang Yuan, Quanquan Gu, and Andrew Yao.
+\newblock On the design of kl-regularized policy gradient algorithms for llm
+  reasoning.
+\newblock In {\em International Conference on Learning Representations}, volume
+  2026, pages 88357--88395, 2026.
+
+\bibitem{liu2026prorl}
+Mingjie Liu, Shizhe Diao, Ximing Lu, Jian Hu, Xin Dong, Yejin Choi, Jan Kautz,
+  and Yi~Dong.
+\newblock Prorl: Prolonged reinforcement learning expands reasoning boundaries
+  in large language models.
+\newblock {\em Advances in Neural Information Processing Systems},
+  38:17998--18031, 2026.
+
+\bibitem{schulman2017proximal}
+John Schulman, Filip Wolski, Prafulla Dhariwal, Alec Radford, and Oleg Klimov.
+\newblock Proximal policy optimization algorithms.
+\newblock {\em arXiv preprint arXiv:1707.06347}, 2017.
+
+\bibitem{blakeman2025nvidia}
+Aaron Blakeman, Aaron Grattafiori, Aarti Basant, Abhibha Gupta, Abhinav
+  Khattar, Adi Renduchintala, Aditya Vavre, Akanksha Shukla, Akhiad Bercovich,
+  Aleksander Ficek, et~al.
+\newblock Nvidia nemotron 3: Efficient and open intelligence.
+\newblock {\em arXiv preprint arXiv:2512.20856}, 2025.
+
+\bibitem{blakeman2026nemotron}
+Aaron Blakeman, Aaron Thomas, Aastha Jhunjhunwala, Abhibha Gupta, Abhinav
+  Khattar, Adam Rajfer, Adi Renduchintala, Adil Asif, Aditya Vavre,
+  Adriana~Flores Miranda, et~al.
+\newblock Nemotron 3 ultra: Open, efficient mixture-of-experts hybrid
+  mamba-transformer model for agentic reasoning.
+\newblock {\em arXiv preprint arXiv:2606.15007}, 2026.
+
+\bibitem{team2025every}
+Ling Team, Anqi Shen, Baihui Li, Bin Hu, Bin Jing, Cai Chen, Chao Huang, Chao
+  Zhang, Chaokun Yang, Cheng Lin, et~al.
+\newblock Every step evolves: Scaling reinforcement learning for trillion-scale
+  thinking model.
+\newblock {\em arXiv preprint arXiv:2510.18855}, 2025.
+
+\bibitem{lan2023policy}
+Guanghui Lan.
+\newblock Policy mirror descent for reinforcement learning: Linear convergence,
+  new sampling complexity, and generalized problem classes.
+\newblock {\em Mathematical programming}, 198(1):1059--1106, 2023.
+
+\bibitem{xiao2022convergence}
+Lin Xiao.
+\newblock On the convergence rates of policy gradient methods.
+\newblock {\em Journal of Machine Learning Research}, 23(282):1--36, 2022.
+
+\bibitem{pmlr-v267-kazemnejad25a}
+Amirhossein Kazemnejad, Milad Aghajohari, Eva Portelance, Alessandro Sordoni,
+  Siva Reddy, Aaron Courville, and Nicolas Le~Roux.
+\newblock {V}ine{PPO}: Refining credit assignment in {RL} training of {LLM}s.
+\newblock In Aarti Singh, Maryam Fazel, Daniel Hsu, Simon Lacoste-Julien, Felix
+  Berkenkamp, Tegan Maharaj, Kiri Wagstaff, and Jerry Zhu, editors, {\em
+  Proceedings of the 42nd International Conference on Machine Learning}, volume
+  267 of {\em Proceedings of Machine Learning Research}, pages 29557--29590.
+  PMLR, 13--19 Jul 2025.
+
+\bibitem{rafailov2023direct}
+Rafael Rafailov, Archit Sharma, Eric Mitchell, Stefano Ermon, Christopher~D
+  Manning, and Chelsea Finn.
+\newblock Direct preference optimization: your language model is secretly a
+  reward model.
+\newblock In {\em Proceedings of the 37th International Conference on Neural
+  Information Processing Systems}, pages 53728--53741, 2023.
+
+\bibitem{zeng2024token}
+Yongcheng Zeng, Guoqing Liu, Weiyu Ma, Ning Yang, Haifeng Zhang, and Jun Wang.
+\newblock Token-level direct preference optimization.
+\newblock In {\em International Conference on Machine Learning}, pages
+  58348--58365. PMLR, 2024.
+
+\bibitem{rafailovr}
+Rafael Rafailov, Joey Hejna, Ryan Park, and Chelsea Finn.
+\newblock From $ r $ to $ q^* $: Your language model is secretly a q-function.
+\newblock In {\em First Conference on Language Modeling}.
+
+\bibitem{aimeproblems}
+{Art of Problem Solving}.
+\newblock {AIME} problems and solutions.
+
+\bibitem{zheng2025stabilizing}
+Chujie Zheng, Kai Dang, Bowen Yu, Mingze Li, Huiqiang Jiang, Junrong Lin,
+  Yuqiong Liu, Hao Lin, Chencan Wu, Feng Hu, et~al.
+\newblock Stabilizing reinforcement learning with llms: Formulation and
+  practices.
+\newblock {\em arXiv preprint arXiv:2512.01374}, 2025.
+
+\bibitem{qi2025defeating}
+Penghui Qi, Zichen Liu, Xiangxin Zhou, Tianyu Pang, Chao Du, Wee~Sun Lee, and
+  Min Lin.
+\newblock Defeating the training-inference mismatch via fp16.
+\newblock {\em arXiv preprint arXiv:2510.26788}, 2025.
+
+\bibitem{yao2026rethinking}
+Jiarui Yao, Xiangxin Zhou, Penghui Qi, Wee~Sun Lee, Liefeng Bo, and Tianyu
+  Pang.
+\newblock Rethinking the divergence regularization in llm rl.
+\newblock {\em arXiv preprint arXiv:2606.09821}, 2026.
+
+\bibitem{yao2025rollout}
+Feng Yao, Liyuan Liu, Dinghuai Zhang, Chengyu Dong, Jingbo Shang, and Jianfeng
+  Gao.
+\newblock On the rollout-training mismatch in modern rl systems.
+\newblock In {\em OPT 2025: Optimization for Machine Learning}, 2025.
+
+\bibitem{sutton1998reinforcement}
+Richard~S Sutton, Andrew~G Barto, and Andrew Barto.
+\newblock {\em Reinforcement learning: An introduction}, volume~1.
+\newblock MIT press Cambridge, 1998.
+
+\bibitem{geist2019theory}
+Matthieu Geist, Bruno Scherrer, and Olivier Pietquin.
+\newblock A theory of regularized markov decision processes.
+\newblock In {\em International conference on machine learning}, pages
+  2160--2169. PMLR, 2019.
+
+\bibitem{tomar2020mirror}
+Manan Tomar, Lior Shani, Yonathan Efroni, and Mohammad Ghavamzadeh.
+\newblock Mirror descent policy optimization.
+\newblock {\em arXiv preprint arXiv:2005.09814}, 2020.
+
+\bibitem{ma2025stabilizing}
+Wenhan Ma, Hailin Zhang, Liang Zhao, Yifan Song, Yudong Wang, Zhifang Sui, and
+  Fuli Luo.
+\newblock Stabilizing moe reinforcement learning by aligning training and
+  inference routers.
+\newblock {\em arXiv preprint arXiv:2510.11370}, 2025.
+
+\bibitem{ivison2026tmax}
+Hamish Ivison, Junjie~Oscar Yin, Rulin Shao, Teng Xiao, Nathan Lambert, and
+  Hannaneh Hajishirzi.
+\newblock Tmax: A simple recipe for terminal agents.
+\newblock {\em arXiv preprint arXiv:2606.23321}, 2026.
+
+\bibitem{khatri2026art}
+Devvrit Khatri, Lovish Madaan, Rishabh Tiwari, Rachit Bansal, Venkata Sai
+  Surya~Subramanyam Duvvuri, Manzil Zaheer, Inderjit Dhillon, David
+  Brandfonbrener, and Rishabh Agarwal.
+\newblock The art of scaling reinforcement learning compute for llms.
+\newblock In {\em International Conference on Learning Representations}, volume
+  2026, pages 72438--72467, 2026.
+
+\end{thebibliography}

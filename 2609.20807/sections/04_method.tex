@@ -1,0 +1,68 @@
+\section{得分中心化}
+\label{sec:sc}
+
+\begin{notationbox}
+\textbf{符号说明.} 从一次采样 $y$  的更新会对其所有 token 得分进行求和，每个得分按该采样的奖励（或优势）$R$ 加权。我们考察单个 token $y_t$ 在给定其前缀 $y_{<t}$ 条件下的期望贡献。采样器 $q$  生成 token $y_t$；$v$  表示词表的索引。$p_v$  和 $q_v$  分别是 $v$  在训练者 $p$  和采样器 $q$  下的下一个 token 概率，$s_v = \nabla_\theta \log p_v$  是其得分，$\bar{s} = \sum_v q_v \, s_v$  是采样器下的期望得分。$\mathbb{E}_q$  和 $\mathbb{E}_p$  对前缀之后的其余采样部分进行求和。
+\end{notationbox}
+
+考虑在具有恒定 $+1$  奖励的环境中使用原始策略梯度进行强化学习训练。理论上，应该没有学习发生——因为奖励是恒定的，所以环境没有提供任何“信号”。事实上，在同策略下，每个前缀的期望梯度都为零：$\mathbb{E}_p[R \, s_{y_t}] = R \, \mathbb{E}_p[s_{y_t}] = R \cdot 0$ ，因为 $\mathbb{E}_p[s_{y_t}] = \sum_v p_v \nabla_\theta \log p_v = \nabla_\theta \sum_v p_v = \nabla_\theta 1 = 0$ 对于任意分布都成立。
+
+\clearpage
+然而，在 TIM 下，期望梯度是非零的：token 从采样器 $q$ 中采样，而得分通过训练器 $p$ 计算，因此 $\bar{s} = \mathbb{E}_q[s_{y_t}] \ne 0$ 通常不为零。 \begingroup\color{equationnavy}
+利用协方差恒等式，\footnote{$\mathrm{Cov}(A, B) = \mathbb{E}[AB] - \mathbb{E}[A]\,\mathbb{E}[B] \; \Rightarrow \; \mathbb{E}[AB] = \mathbb{E}[A]\,\mathbb{E}[B] + \mathrm{Cov}(A, B)$} 我们可以将前缀处的期望策略梯度更新分解为一个 \textcolor{driftcoral}{``漂移''} 项和一个 \textcolor{signalteal}{``信号''} 项：
+\begin{equation}
+\underbrace{\mathbb{E}_q[R \, s_{y_t}]}_{\text{policy gradient update}}
+\hspace{-3mm} = \hspace{1.3mm} \textcolor{driftcoral}{\underbrace{\mathbb{E}_q[R] \; \bar{s}}_{\text{``drift''}}}
+\; + \; \textcolor{signalteal}{\underbrace{\mathrm{Cov}_q(R, \; s_{y_t})}_{\text{``signal''}}}
+\label{eq:drift}
+\end{equation}
+\endgroup
+\vspace{-1mm}
+\paragraph{漂移是TIM的一种伪影，表现为对采样器的蒸馏作用。} 漂移项不包含关于哪些轨迹成功的信息：它仅通过奖励的均值 $\mathbb{E}_q[R]$ 依赖于奖励。只有协方差项能观察到哪个 token 导致了哪个奖励。漂移项的作用实际上由其方向 $\bar{s}$ 决定：期望得分是交叉熵（SFT）损失相对于采样器作为教师时的负梯度，因此原始策略梯度在每个前缀处将训练器向采样器蒸馏，且缩放因子为该前缀处的期望奖励。这完全是 TIM 的一个结果：同策略下，训练器已与采样器匹配，因此 $\bar{s}=0$ ，漂移项消失。向一个固定的教师进行蒸馏是无害的——它会收敛至该教师的极大似然拟合。然而，采样器并非固定不变：它是训练器的一个有偏副本（例如量化或过时），因此每一步都会将训练器推向采样器；随后训练器权重被同步回采样器，误差在反馈环中累积而非收敛。这解释了为何在所有奖励为正的情况下进行在线训练是 \Cref{fig:2b_online_vs_offline} 中最不稳定的设置。\citet{probing} 同样指出系统性偏差是 TIM 下不稳定的根源，并表明这种偏差通过正反馈环不断放大。
+
+\paragraph{组中心化不能消除漂移。} 组中心化 \citep{grpo} 使得在某个提示的轨迹中优势值之和为零，但在单个前缀上会出现漂移现象，且在给定前缀上的期望优势并不为零：一个很可能导向正确答案的前缀具有正的期望优势，而已经包含错误的前缀则具有负的期望优势。因此，漂移恰好出现在携带学习信号的前缀处——对于具有正期望优势的前缀，训练器会被拉向采样器；而对于具有负期望优势的前缀，训练器则被推离采样器，无论相关 token 是否影响奖励。组中心化相对于 $+1/0$ 奖励确实减小了漂移，这与它在 \Cref{fig:2b_online_vs_offline} 情景中是最稳定的在线设置相一致，但并未完全消除漂移。
+
+\paragraph{得分中心化可消除漂移。} 这些观察结果直接促使我们提出方法，称为 \emph{得分中心化}：即使在 TIM 情况下，我们也希望每个前缀的期望得分都为零，如同策略时一样。我们只需从每个得分中减去采样器下的期望得分，将 $s_{y_t}$ 替换为中心化的得分 $\tilde{s}_{y_t}$ 即可：
+\begin{equation}
+\tilde{s}_{y_t} = s_{y_t} - \bar{s}.
+\label{eq:sc}
+\end{equation}
+带得分中心化的期望策略梯度更新变为：
+\begin{align}
+\hspace{25mm} \mathbb{E}_q[R\,\tilde{s}_{y_t}] &= \overset{\color{gentlelilac} \mathbb{E}_q[\tilde{s}_{y_t}] \,=\, \bar{s} - \bar{s} \,=\, 0}{\cancel{\mathbb{E}_q[R]\;\mathbb{E}_q[\tilde{s}_{y_t}]}} + \mathrm{Cov}_q(R, \tilde{s}_{y_t}) \label{eq:sc_bias} \\
+&= \mathrm{Cov}_q(R, \tilde{s}_{y_t}) \nonumber \\
+&= \mathrm{Cov}_q(R, s_{y_t}) \;\; \longleftarrow \;\;
+\smash[t]{\begin{array}{@{}l@{}}
+\text{only difference to on-policy update} \\
+\text{is the covariance sampling distribution}
+\end{array}} \nonumber
+\end{align}
+
+定义在 \Cref{eq:sc} 中的中心化得分在采样器下具有零均值，因为两个期望都在同一分布下计算——即使在异策略情况下，漂移在每个前缀处也会被确切抵消。\Cref{eq:sc_bias} 表明，使用得分中心化的期望更新在至多分布差异的情况下等于同策略的期望更新——无论是同策略还是在重要性采样下的 TIM 情况，协方差都是在训练分布 $p_\theta$ 下测量的，而得分中心化则在采样分布 $q_\theta$ 下测量它。当不存在 TIM 时，即当 $p_\theta = q_\theta$ 时，得分中心化不起作用，因为 \Cref{eq:sc} 中的修正项恰好为零。
+
+\paragraph{得分中心化与重要性采样。} 重要性采样与得分中心化一样，也能精确消除漂移。然而，重要性采样使用一个随机的乘性修正项，这意味着它会增加梯度方差，且其值依赖于所采样的 token。对于稀有 token，重要性比率可能非常大，因此几乎所有实际实现都会以某种方式对大的重要性比率进行截断或掩码处理 (\Cref{tab:is_methods})，从而重新引入漂移。相比之下，得分中心化是一种给定前缀时为 \textit{确定性} 的 \textit{加性} 修正项——它不依赖于所采样的 token，且可以精确计算。由于得分中心化和重要性采样以独立的方式纠正 TIM，这两种方法可以相互组合，如 \Cref{sec:is_composition} 所述。
+
+\paragraph{与经典基准的关系。} 从策略梯度中减去一个均值为零的量是一种经典的方差减小思想：奖励基准 \citep{reinforce} 和得分函数控制变量 \citep{bbvi} 都基于恒等式 $\mathbb{E}_p[s_{y_t}] = 0$。得分中心化是一种偏差校正，而非方差减小：所减去的向量在给定前缀的情况下是确定性的，并被选择用来调整更新的均值，而同策略下的奖励基准仅改变方差而不改变均值。在异策略情况下，等于前缀处期望奖励（确切的价值函数）的奖励基准也会在期望上消除漂移；而得分中心化则无需评论员即可获得相同的期望更新。据我们所知，之前的方法从未减去期望得分本身：在同策略下其值为零，而在经典的异策略强化学习中，对动作空间的不可处理期望进行计算，因此异策略方法依赖重要性采样。在 TIM 框架下对大模型进行强化学习训练是不寻常的，因为期望得分既非零又可精确计算，即通过对下一个 token 的 logprob 求和得到。
+
+\subsection{实施}
+\label{sec:sc_impl}
+
+存储采样器完整的下一个 token 分布开销过大。因此，我们仅记录其前 $k$ 个最高 logprob ($k=128$ )，并将尾部建模为经过缩放以匹配采样器尾部质量的训练器分布。我们通过标量损失实现得分中心化：
+\begin{equation}
+L = -R \, \Big( \log p_{y_t} - \sum_{v \in H} \operatorname{sg}\left[ q_v - \rho \, p_v \right] \log p_v \Big),
+\label{eq:sc_loss_main}
+\end{equation}
+其中 $\rho$ 表示采样器与训练器尾部质量的比例，$\operatorname{sg}$ 表示停止梯度。在我们测试的每种情景下，使用 $k=128$ 或甚至 $k=32$ 都能实现完整的得分中心化（\Cref{sec:topk_ablation}）。下面的代码片段展示了一个单 token 的最小实现：
+\begin{lstlisting}[style=python]
+import jax.numpy as jnp
+from jax.lax import stop_gradient
+
+def score_centering_loss(train_logp, samp_logp, topk_ids, sampled_token, advantage):
+    train_head_logp = train_logp[topk_ids]
+    tail_mass_ratio = (1 - jnp.exp(samp_logp).sum()) / (1 - jnp.exp(train_head_logp).sum())
+    head_prob_residual = jnp.exp(samp_logp) - tail_mass_ratio * jnp.exp(train_head_logp)
+    logp_correction = (stop_gradient(head_prob_residual) * train_head_logp).sum()
+    return -advantage * (train_logp[sampled_token] - logp_correction)
+\end{lstlisting}
+
+在 \Cref{sec:sc_implementation} 中，我们提供了得分中心化完整的推导过程以及支持重要性权重的泛化实现。

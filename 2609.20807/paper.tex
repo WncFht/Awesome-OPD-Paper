@@ -1,0 +1,154 @@
+
+\documentclass{article}
+\usepackage[fontset=fandol,UTF8]{ctex} 
+\usepackage{iclr2027_conference}
+
+
+\input{math_commands.tex}
+
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{bm} 
+\usepackage{colortbl}
+\usepackage{array}
+\usepackage[nameinlink]{cleveref}
+\DeclareRobustCommand{\parenCref}[1]{%
+  (\hyperref[#1]{\nameCref{#1}~\ref*{#1}})%
+}
+\hypersetup{colorlinks, linkcolor={red!65!black}, citecolor={blue!75!black}, urlcolor={blue!75!black}}
+\usepackage{cancel}
+\usepackage{tcolorbox}
+\usepackage{listings}
+\usepackage{inconsolata}
+\definecolor{codekeyword}{HTML}{008000}
+\definecolor{codename}{HTML}{0000FF}
+\definecolor{codecomment}{HTML}{3D7B7B}
+\definecolor{codestring}{HTML}{BA2121}
+\definecolor{codeoperator}{HTML}{666666}
+\lstdefinestyle{python}{
+    language=Python,
+    basicstyle=\fontsize{8.4pt}{10pt}\selectfont\ttfamily,
+    keywordstyle=\color{codekeyword}\bfseries,
+    keywordstyle=[2]\color{codekeyword},
+    deletekeywords=[2]{sum},
+    emph={score_centering_loss},
+    emphstyle=\color{codename},
+    morekeywords=[3]{jax,numpy,lax},
+    keywordstyle=[3]\color{codename}\bfseries,
+    commentstyle=\color{codecomment}\itshape,
+    stringstyle=\color{codestring},
+    literate=*
+        {0}{{\textcolor{codeoperator}{0}}}1
+        {1}{{\textcolor{codeoperator}{1}}}1
+        {2}{{\textcolor{codeoperator}{2}}}1
+        {3}{{\textcolor{codeoperator}{3}}}1
+        {4}{{\textcolor{codeoperator}{4}}}1
+        {5}{{\textcolor{codeoperator}{5}}}1
+        {6}{{\textcolor{codeoperator}{6}}}1
+        {7}{{\textcolor{codeoperator}{7}}}1
+        {8}{{\textcolor{codeoperator}{8}}}1
+        {9}{{\textcolor{codeoperator}{9}}}1
+        {=}{{\textcolor{codeoperator}{=}}}1
+        {+}{{\textcolor{codeoperator}{+}}}1
+        {-}{{\textcolor{codeoperator}{-}}}1
+        {*}{{\textcolor{codeoperator}{*}}}1
+        {/}{{\textcolor{codeoperator}{/}}}1,
+    backgroundcolor=\color{gray!6},
+    frame=single,
+    rulecolor=\color{gridline},
+    framesep=6pt,
+    xleftmargin=6pt,
+    xrightmargin=6pt,
+    showstringspaces=false,
+    columns=fullflexible,
+    keepspaces=true,
+    upquote=true,
+    tabsize=4,
+    breaklines=false
+}
+
+\newtcolorbox{notationbox}{colback=gridgray, colframe=gridgray, boxrule=0pt, arc=2pt, left=6pt, right=6pt, top=4pt, bottom=4pt, boxsep=0pt}
+\definecolor{gentlelilac}{RGB}{112,48,175}
+\renewcommand{\CancelColor}{\color{gentlelilac}}
+
+\title{得分中心化稳定了异策略强化学习}
+
+\author{Martin Marek \& Max Ryabinin \\
+Together AI \\
+\vspace{-8mm}
+}
+
+\newcommand{\fix}{\marginpar{FIX}}
+\newcommand{\new}{\marginpar{NEW}}
+\definecolor{gridblue}{RGB}{235,244,250}
+\definecolor{gridcyan}{RGB}{234,247,247}
+\definecolor{gridgreen}{RGB}{238,247,238}
+\definecolor{gridamber}{RGB}{252,246,229}
+\definecolor{gridorange}{RGB}{252,240,229}
+\definecolor{gridyellow}{RGB}{250,248,225}
+\definecolor{gridred}{RGB}{252,238,238}
+\definecolor{gridteal}{RGB}{232,247,241}
+\definecolor{gridpurple}{RGB}{246,239,250}
+\definecolor{gridpink}{RGB}{251,237,246}
+\definecolor{gridgray}{RGB}{243,243,243}
+\definecolor{deep0}{HTML}{4C72B0}      
+\definecolor{deep1}{HTML}{DD8452}
+\definecolor{deep2}{HTML}{55A868}
+\definecolor{tblteal}{HTML}{2A9D8F}   
+\definecolor{figother}{HTML}{666666}  
+\definecolor{gridline}{RGB}{210,210,210}
+\definecolor{driftcoral}{HTML}{C65D4A}
+\definecolor{signalteal}{HTML}{087F78}
+\definecolor{equationnavy}{HTML}{283348}
+
+\iclrfinalcopy 
+\begin{document}
+
+
+\vspace*{-5mm} 
+\maketitle
+
+\begin{abstract}
+\input{sections/00_abstract}
+\end{abstract}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{plots/30b_math.pdf}
+    \caption{
+    \textbf{得分中心化在重度量化下优于重要性采样。}
+我们使用强化学习在INTELLECT-2数学数据~\citep{intellect2}上对Qwen3-30B-A3B-Base~\citep{qwen3}进行训练，逐步增加采样器的量化强度。
+我们在一个共享目标(\Cref{sec:results_setup})上比较修正规则。
+在轻度量化情况下，朴素的\textcolor{deep2}{策略梯度（PG）}在800步内训练稳定，表现与修正方法相当。
+随着量化严重程度的增加，训练变得越来越不稳定，且\textcolor{deep0}{得分中心化（SC）}、\textcolor{deep1}{截断重要性采样（TIS）}以及\textcolor{figother}{其他修正方法}之间的差距逐渐扩大。
+    }
+    \vspace{12pt}
+    \label{fig:30b_math}
+\end{figure}
+
+\input{sections/01_intro}
+
+\input{sections/02_background}
+
+\input{sections/03_study}
+
+\input{sections/04_method}
+
+\input{sections/05_experiments}
+
+\input{sections/07_conclusion}
+
+\bibliography{paper.bib}
+\bibliographystyle{iclr2027_conference}
+
+\appendix
+\clearpage
+
+\input{sections/06_implementation_details}
+
+\input{sections/08_appendix}
+
+\end{document}

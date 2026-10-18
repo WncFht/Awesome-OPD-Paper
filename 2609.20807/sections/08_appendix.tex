@@ -1,0 +1,102 @@
+\section{实验细节}
+\label{sec:experimental_details}
+
+\subsection{训练设置}
+
+除非另有说明，我们使用以群体为中心奖励的REINFORCE：
+\begin{equation}
+J_{\mathrm{base}}(\theta)
+= \frac{\sum_i A_i \sum_{t=1}^{L_i} \log p_\theta(y_{i,t}\mid y_{i,<t})}
+       {\sum_i L_i},
+\qquad A_i = R_i - \bar R_{\mathrm{group}},
+\qquad R_i \in \{-1,+1\}.
+\label{eq:shared_reinforce}
+\end{equation}
+这里 $i$  表示批量中的轨迹索引，$L_i$  表示轨迹长度，$\bar R_{\mathrm{group}}$  表示相同提示词的完成部分的平均奖励。
+
+遵循~\citet{rl_sgd}，我们在所有实验中均使用SGD，学习率固定为$10^{-2}$。我们发现该学习率在所有实验中均表现稳定，且性能与AdamW相当，同时节省了高达240GB的内存。每个批量对每个提示采样8个完整序列，并执行一次优化器步骤。对于Countdown上的Qwen3-0.6B-Instruct，我们每批使用64个提示（共512个序列），最大序列长度为512；对于INTELLECT-2数学任务中的Qwen3-30B-A3B-Base，每批使用16个提示（共128个序列），最大序列长度为1024。更长的序列会增加TIM \citep{jet_rl}，但会使多个基准方法的多种子比较成本过高。
+
+\subsection{修正方法}
+\label{sec:is_methods}
+
+我们比较的所有基于IS的方法都落在一个简单的网格上（\Cref{tab:is_methods}）。它们的区别在于修正操作是按token还是按序列进行，重要性比率是否被截断或掩码，以及修正哪些优势值的符号。DPPO使用基于二值总变差的掩码区域，而非重要性比率，但其目标函数仍使用IS权重。我们采用原始论文中的默认参数或\texttt{verl}的默认设置，未进行额外调优。所有重要性比率均相对于采样器记录的概率计算得出。GSPO使用原始论文中定义的token比率的几何平均值。
+
+我们对同一目标应用每种修正，而不是从每篇论文中重新实现完整流程（\Cref{sec:results_setup}）。\Cref{tab:is_methods} 的最后一列提供了每种方法的实现细节。PG 使用 \Cref{eq:shared_reinforce} 而不进行任何修正。对于得分中心化，我们使用前-$k$ 的近似，并采用 $k=128$  (\Cref{sec:sc_implementation})。
+
+\begin{table}[t]
+    \centering
+    \caption{基于IS的校正方法以表格形式表示，最后一列为实现说明。\texttt{Level} 决定统计量是按 token 还是按序列计算。\texttt{Outside} 指定在 \texttt{Low...High} 区域之外的行为。\texttt{Sign} 指定对哪些优势符号进行校正：\texttt{both} 将权重应用于每个 token；\texttt{neg} 仅对具有负优势的 token 应用（正优势 token 的权重保持为1）；\texttt{ppo} 应用 PPO 悲观截断，即加权目标与截断目标的极小点，因此截断仅在可能增大目标的方向上起作用。双截断遵循 \texttt{verl} 的 PPO 实现：比率高于 $3$  的负优势贡献被丢弃（对 GSPO 为整个响应）。$^{\mathrm P}$  表示论文默认设置，$^{\mathrm V}$  表示 \texttt{verl} 默认设置 \citep{verl}。}
+    \label{tab:is_methods}
+    \small
+    \arrayrulecolor{gridline}
+    \setlength{\arrayrulewidth}{0.3pt}
+    \setlength{\tabcolsep}{3pt}
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{@{}>{\raggedright\arraybackslash}m{70pt}
+        >{\centering\arraybackslash}m{25pt}
+        >{\centering\arraybackslash}m{24pt}
+        >{\centering\arraybackslash}m{30pt}
+        >{\centering\arraybackslash}m{30pt}
+        >{\centering\arraybackslash}m{32pt}
+        >{\centering\arraybackslash}m{22pt}
+        >{\raggedright\arraybackslash}m{\dimexpr\linewidth-275pt\relax}@{}}
+        \hline
+        \rowcolor{gridgray}
+        \textbf{Method} & \textbf{Level} & \textbf{Stat} & \textbf{Low} & \textbf{High} & \textbf{Outside} & \textbf{Sign} & \textbf{Implementation notes} \\
+        \hline
+        \cellcolor{gridgray}Naive IS \citep{reinforce} & \cellcolor{deep0!12}\texttt{token} & \cellcolor{tblteal!12}\texttt{ratio} & \cellcolor{deep1!50}0 & \cellcolor{deep1!50}$\infty$ & \cellcolor{gentlelilac!5}\texttt{-} & \cellcolor{deep2!30}\texttt{both} & --- \\
+        \hline
+        \cellcolor{gridgray}TIS$^{\mathrm V}$ \citep{tis}\par CISPO \citep{cispo} & \cellcolor{deep0!12}\texttt{token} & \cellcolor{tblteal!12}\texttt{ratio} & \cellcolor{deep1!50}0 & \cellcolor{deep1!30}2.0 & \cellcolor{gentlelilac!30}\texttt{clip} & \cellcolor{deep2!30}\texttt{both} & CISPO's dynamic sampling and length penalty omitted. \\
+        \hline
+        \cellcolor{gridgray}MIS (IcePop)$^{\mathrm P}$ \citep{icepop} & \cellcolor{deep0!12}\texttt{token} & \cellcolor{tblteal!12}\texttt{ratio} & \cellcolor{deep1!30}0.5 & \cellcolor{deep1!30}5.0 & \cellcolor{gentlelilac!10}\texttt{drop} & \cellcolor{deep2!30}\texttt{both} & Separate PPO surrogate between policy versions omitted. \\
+        \hline
+        \cellcolor{gridgray}PPO$^{\mathrm{P,V}}$ \citep{ppo} & \cellcolor{deep0!12}\texttt{token} & \cellcolor{tblteal!12}\texttt{ratio} & \cellcolor{deep1!16}0.8 & \cellcolor{deep1!16}1.2 & \cellcolor{gentlelilac!10}\texttt{drop} & \cellcolor{deep2!12}\texttt{ppo} & Dual clipping at $3$ (\texttt{verl} default). \\
+        \hline
+        \cellcolor{gridgray}DAPO$^{\mathrm{P,V}}$ \citep{dapo} & \cellcolor{deep0!12}\texttt{token} & \cellcolor{tblteal!12}\texttt{ratio} & \cellcolor{deep1!16}0.8 & \cellcolor{deep1!16}1.28 & \cellcolor{gentlelilac!10}\texttt{drop} & \cellcolor{deep2!12}\texttt{ppo} & Dual clipping at $3$; dynamic sampling and overlong reward penalty omitted. \\
+        \hline
+        \cellcolor{gridgray}GSPO$^{\mathrm{P,V}}$ \citep{gspo} & \cellcolor{deep0!38}\texttt{seq} & \cellcolor{tblteal!12}\texttt{ratio} & \cellcolor{deep1!6}0.9997 & \cellcolor{deep1!6}1.0004 & \cellcolor{gentlelilac!10}\texttt{drop} & \cellcolor{deep2!12}\texttt{ppo} & Token gradients summed rather than response-averaged; added dual clipping at $3$. \\
+        \hline
+        \cellcolor{gridgray}TOPR$^{\mathrm P}$ \citep{topr} & \cellcolor{deep0!38}\texttt{seq} & \cellcolor{tblteal!12}\texttt{ratio} & \cellcolor{deep1!50}0 & \cellcolor{deep1!6}1.0 & \cellcolor{gentlelilac!30}\texttt{clip} & \cellcolor{deep2!50}\texttt{neg} & --- \\
+        \hline
+        \cellcolor{gridgray}DPPO$^{\mathrm P}$ \citep{dppo} & \cellcolor{deep0!12}\texttt{token} & \cellcolor{tblteal!38}\texttt{tv} & \cellcolor{deep1!50}0 & \cellcolor{deep1!30}0.2 & \cellcolor{gentlelilac!10}\texttt{drop} & \cellcolor{deep2!12}\texttt{ppo} & No importance-ratio clipping. \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsection{计算资源}
+
+在所有图表中，阴影部分表示 $\pm 1$ 标准差。\Cref{fig:2b_online_vs_offline,fig:06b_weight_noise} 报告了在保留的评估提示上的准确率，而 \Cref{fig:30b_math,fig:06b_quant_stale,fig:top_k} 报告训练准确率，即采样轨迹的平均奖励，经过训练步数的中心移动平均平滑处理。
+
+\Cref{tab:reproduction_compute} 列出了每种方法的种子数量以及重现每张图表所需的近似计算成本。
+
+对于 0.6B 和 1.7B 模型，我们为每种修正方法（\Cref{fig:2b_online_vs_offline,fig:06b_weight_noise,fig:06b_quant_stale}）在每个实验中运行了 3 个种子。然而，由于训练 30B 模型（\Cref{fig:30b_math}）的成本高得多，我们最初仅以单个种子运行每种方法，之后仅对表现最佳的方法增加了更多种子（因为这些是我们最关心的对比）。在 FP8 KV 面板中，所有方法均为单种子；而在 FP4 KV 和 INT4 KV 面板中，分数中心化分别使用 5 和 4 个种子，TIS 使用 4 和 3 个，MIS 使用 3 和 3 个，而原始 IS 分别使用 2 和 1 个种子。
+
+其余所有方法均为单种子。类似地，在 \Cref{fig:top_k} 中，$k=128$ 对于 30B 模型的结果来自 \Cref{fig:30b_math}，因此为多种子；$k=32$ 和完整分数中心化为单种子，以降低计算成本。
+
+\begin{table}[H]
+    \centering
+    \caption{每条曲线的种子数及重现我们图表所需的近似计算量。实验主要在配备8$\times$ NVIDIA H100 SXM GPU的结点上运行。}
+    \label{tab:reproduction_compute}
+    \resizebox{\linewidth}{!}{%
+    \arrayrulecolor{gridline}
+    \setlength{\arrayrulewidth}{0.3pt}
+    \begin{tabular}{lllrr}
+        \hline
+        \rowcolor{gridgray}
+        \textbf{Experiment} & \textbf{Figure} & \textbf{Seeds} & \textbf{Unique runs} & \textbf{Approx. H100-hours} \\
+        \hline
+        \cellcolor{gridgray}Online vs.\ offline & \Cref{fig:2b_online_vs_offline} & 3 & 18 & 190 \\
+        \hline
+        \cellcolor{gridgray}Synthetic weight noise & \Cref{fig:06b_weight_noise} & 3 & 108 & 280 \\
+        \hline
+        \cellcolor{gridgray}Quantization and staleness & \Cref{fig:06b_quant_stale} & 3 & 72 & 1,120 \\
+        \hline
+        \cellcolor{gridgray}30B math & \Cref{fig:30b_math} & 1--5 & 47 & 3,750 \\
+        \hline
+        \cellcolor{gridgray}Top-$k$ ablation & \Cref{fig:top_k} & see legend & 51 & 840 \\
+        \hline
+        \cellcolor{gridgray}\textbf{Total} & & & \textbf{296} & \textbf{6,180} \\
+        \hline
+    \end{tabular}%
+    }
+\end{table}

@@ -1,0 +1,332 @@
+\begin{thebibliography}{43}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Bishop(2006)]{bishop}
+Christopher~M. Bishop.
+\newblock \emph{Pattern Recognition and Machine Learning}.
+\newblock Springer, 2006.
+
+\bibitem[{DeepSeek-AI}(2025)]{deepseek_r1}
+{DeepSeek-AI}.
+\newblock {DeepSeek-R1}: Incentivizing reasoning capability in {LLM}s via
+  reinforcement learning.
+\newblock \emph{arXiv preprint arXiv:2501.12948}, 2025.
+\newblock URL \url{https://arxiv.org/abs/2501.12948}.
+
+\bibitem[Deng et~al.(2025)Deng, Ren, Li, Sutherland, Li, and
+  Thrampoulidis]{nthr}
+Wenlong Deng, Yi~Ren, Muchen Li, Danica~J. Sutherland, Xiaoxiao Li, and
+  Christos Thrampoulidis.
+\newblock On the effect of negative gradient in group relative deep
+  reinforcement optimization.
+\newblock In \emph{Advances in Neural Information Processing Systems}, 2025.
+\newblock URL \url{https://arxiv.org/abs/2505.18830}.
+
+\bibitem[Dong et~al.(2026)Dong, Fu, Li, Zhu, Liu, Shao, Ye, and Wang]{probing}
+Yiming Dong, Kun Fu, Haoyu Li, Xinyuan Zhu, Yurou Liu, Lijing Shao, Jieping Ye,
+  and Zheng Wang.
+\newblock Probing {RLVR} training instability through the lens of
+  objective-level hacking.
+\newblock In \emph{Forty-third International Conference on Machine Learning},
+  2026.
+\newblock URL \url{https://openreview.net/forum?id=KlGj06E8Wa}.
+
+\bibitem[{FlashInfer contributors}(2026)]{flashinfer_sentinel}
+{FlashInfer contributors}.
+\newblock fix(attention): handle extreme negative logits in masked softmax,
+  August 2026.
+\newblock URL \url{https://github.com/flashinfer-ai/flashinfer/pull/4401}.
+
+\bibitem[Fu et~al.(2025)Fu, Gao, Shen, Zhu, Mei, He, Xu, Wei, Mei, Wang, Yang,
+  Yuan, and Wu]{areal}
+Wei Fu, Jiaxuan Gao, Xujie Shen, Chen Zhu, Zhiyu Mei, Chuyi He, Shusheng Xu,
+  Guo Wei, Jun Mei, Jiashu Wang, Tongkai Yang, Binhang Yuan, and Yi~Wu.
+\newblock {AReaL}: A large-scale asynchronous reinforcement learning system for
+  language reasoning.
+\newblock \emph{arXiv preprint arXiv:2505.24298}, 2025.
+\newblock URL \url{https://arxiv.org/abs/2505.24298}.
+
+\bibitem[Gandhi et~al.(2024)Gandhi, Lee, Grand, Liu, Cheng, Sharma, and
+  Goodman]{stream_of_search}
+Kanishk Gandhi, Denise Lee, Gabriel Grand, Muxin Liu, Winson Cheng, Archit
+  Sharma, and Noah~D. Goodman.
+\newblock Stream of search ({SoS}): Learning to search in language.
+\newblock \emph{arXiv preprint arXiv:2404.03683}, 2024.
+\newblock URL \url{https://arxiv.org/abs/2404.03683}.
+
+\bibitem[Greensmith et~al.(2004)Greensmith, Bartlett, and Baxter]{greensmith}
+Evan Greensmith, Peter~L. Bartlett, and Jonathan Baxter.
+\newblock Variance reduction techniques for gradient estimates in reinforcement
+  learning.
+\newblock \emph{Journal of Machine Learning Research}, 5:\penalty0 1471--1530,
+  2004.
+
+\bibitem[He \& {Thinking Machines Lab}(2025)He and {Thinking Machines
+  Lab}]{thinky_nondeterminism}
+Horace He and {Thinking Machines Lab}.
+\newblock Defeating nondeterminism in {LLM} inference.
+\newblock \emph{Thinking Machines Lab: Connectionism}, 2025.
+\newblock \doi{10.64434/tml.20250910}.
+\newblock
+  https://thinkingmachines.ai/blog/defeating-nondeterminism-in-llm-inference/.
+
+\bibitem[Hinton et~al.(2015)Hinton, Vinyals, and Dean]{distillation}
+Geoffrey Hinton, Oriol Vinyals, and Jeff Dean.
+\newblock Distilling the knowledge in a neural network.
+\newblock \emph{arXiv preprint arXiv:1503.02531}, 2015.
+\newblock URL \url{https://arxiv.org/abs/1503.02531}.
+
+\bibitem[Hou et~al.(2026)Hou, Li, Tang, and Dong]{single_rollout}
+Zhenyu Hou, Yujiang Li, Jie Tang, and Yuxiao Dong.
+\newblock Single-rollout asynchronous optimization for agentic reinforcement
+  learning.
+\newblock \emph{arXiv preprint arXiv:2607.07508}, 2026.
+\newblock URL \url{https://arxiv.org/abs/2607.07508}.
+
+\bibitem[Ionides(2008)]{ionides}
+Edward~L. Ionides.
+\newblock Truncated importance sampling.
+\newblock \emph{Journal of Computational and Graphical Statistics}, 17\penalty0
+  (2):\penalty0 295--311, 2008.
+\newblock \doi{10.1198/106186008X320456}.
+
+\bibitem[Khatri et~al.(2026)Khatri, Madaan, Tiwari, Bansal, Duvvuri, Zaheer,
+  Dhillon, Brandfonbrener, and Agarwal]{scaleRL}
+Devvrit Khatri, Lovish Madaan, Rishabh Tiwari, Rachit Bansal, Sai~Surya
+  Duvvuri, Manzil Zaheer, Inderjit~S. Dhillon, David Brandfonbrener, and
+  Rishabh Agarwal.
+\newblock The art of scaling reinforcement learning compute for {LLM}s.
+\newblock In \emph{The Fourteenth International Conference on Learning
+  Representations}, 2026.
+\newblock URL \url{https://openreview.net/forum?id=FMjeC9Msws}.
+
+\bibitem[Le~Roux et~al.(2025)Le~Roux, Bellemare, Lebensold, Bergeron, Greaves,
+  Fr\'{e}chette, Pelletier, Thibodeau-Laufer, Toth, and Work]{topr}
+Nicolas Le~Roux, Marc~G. Bellemare, Jonathan Lebensold, Arnaud Bergeron, Joshua
+  Greaves, Alex Fr\'{e}chette, Carolyne Pelletier, Eric Thibodeau-Laufer,
+  S\'{a}ndor Toth, and Sam Work.
+\newblock Tapered off-policy {REINFORCE}: Stable and efficient reinforcement
+  learning for {LLM}s.
+\newblock \emph{arXiv preprint arXiv:2503.14286}, 2025.
+\newblock URL \url{https://arxiv.org/abs/2503.14286}.
+
+\bibitem[{Ling Team}(2025)]{icepop}
+{Ling Team}.
+\newblock Every step evolves: Scaling reinforcement learning for trillion-scale
+  thinking model.
+\newblock \emph{arXiv preprint arXiv:2510.18855}, 2025.
+\newblock URL \url{https://arxiv.org/abs/2510.18855}.
+
+\bibitem[Liu et~al.(2025{\natexlab{a}})Liu, Li, Fu, Wang, Liu, and
+  Jiang]{speed_kills_stability}
+Jiacai Liu, Yingru Li, Yuqian Fu, Jiawei Wang, Qian Liu, and Zhuo Jiang.
+\newblock When speed kills stability: Demystifying {RL} collapse from the
+  training-inference mismatch, September 2025{\natexlab{a}}.
+\newblock URL \url{https://richardli.xyz/rl-collapse}.
+
+\bibitem[Liu et~al.(2025{\natexlab{b}})Liu, Yao, Zhang, Dong, Shang, and
+  Gao]{flashrl}
+Liyuan Liu, Feng Yao, Dinghuai Zhang, Chengyu Dong, Jingbo Shang, and Jianfeng
+  Gao.
+\newblock {FlashRL}: 8bit rollouts, full power {RL}, 2025{\natexlab{b}}.
+\newblock URL \url{https://fengyao.notion.site/flash-rl}.
+
+\bibitem[Liu et~al.(2025{\natexlab{c}})Liu, Chen, Li, Qi, Pang, Du, Lee, and
+  Lin]{dr_grpo}
+Zichen Liu, Changyu Chen, Wenjun Li, Penghui Qi, Tianyu Pang, Chao Du, Wee~Sun
+  Lee, and Min Lin.
+\newblock Understanding {R1-Zero}-like training: A critical perspective.
+\newblock \emph{arXiv preprint arXiv:2503.20783}, 2025{\natexlab{c}}.
+\newblock URL \url{https://arxiv.org/abs/2503.20783}.
+
+\bibitem[Ma et~al.(2025)Ma, Zhang, Zhao, Song, Wang, Sui, and Luo]{r3}
+Wenhan Ma, Hailin Zhang, Liang Zhao, Yifan Song, Yudong Wang, Zhifang Sui, and
+  Fuli Luo.
+\newblock Stabilizing {MoE} reinforcement learning by aligning training and
+  inference routers.
+\newblock \emph{arXiv preprint arXiv:2510.11370}, 2025.
+
+\bibitem[{Microsoft AI Team}(2026)]{mai_1}
+{Microsoft AI Team}.
+\newblock {MAI-Thinking-1}: Building a hill-climbing machine.
+\newblock Technical report, 2026.
+\newblock URL \url{https://microsoft.ai/pdf/mai-thinking-1.pdf}.
+
+\bibitem[{MiniMax}(2025)]{cispo}
+{MiniMax}.
+\newblock {MiniMax-M1}: Scaling test-time compute efficiently with lightning
+  attention.
+\newblock \emph{arXiv preprint arXiv:2506.13585}, 2025.
+\newblock URL \url{https://arxiv.org/abs/2506.13585}.
+
+\bibitem[Mukherjee et~al.(2026)Mukherjee, Yuan, Jayasinha, Hakkani-T{\"u}r, and
+  Peng]{rl_sgd}
+Sagnik Mukherjee, Lifan Yuan, Pavan Jayasinha, Dilek Hakkani-T{\"u}r, and Hao
+  Peng.
+\newblock Do we need {Adam}? {Surprisingly} strong and sparse reinforcement
+  learning with {SGD} in {LLM}s.
+\newblock In \emph{Forty-third International Conference on Machine Learning},
+  2026.
+\newblock URL \url{https://openreview.net/forum?id=z31fdV4WRu}.
+
+\bibitem[{OpenAI}(2024)]{o1}
+{OpenAI}.
+\newblock {OpenAI} {o1} system card, 2024.
+\newblock URL \url{https://arxiv.org/abs/2412.16720}.
+
+\bibitem[Owen(2013)]{owen_mc}
+Art~B. Owen.
+\newblock \emph{Monte Carlo Theory, Methods and Examples}.
+\newblock 2013.
+\newblock URL \url{https://artowen.su.domains/mc/}.
+
+\bibitem[Pich{\'e} et~al.(2025)Pich{\'e}, Kamalloo, Pardinas, Chen, and
+  Bahdanau]{pipelineRL}
+Alexandre Pich{\'e}, Ehsan Kamalloo, Rafael Pardinas, Xiaoyin Chen, and Dzmitry
+  Bahdanau.
+\newblock {PipelineRL}: Faster on-policy reinforcement learning for long
+  sequence generation.
+\newblock \emph{arXiv preprint arXiv:2509.19128}, 2025.
+
+\bibitem[{Prime Intellect Team} et~al.(2025){Prime Intellect Team}, Jaghouar,
+  Mattern, Ong, Straube, Basra, Pazdera, Thaman, Di~Ferrante, Gabriel, Obeid,
+  Erdem, Keiblinger, and Hagemann]{intellect2}
+{Prime Intellect Team}, Sami Jaghouar, Justus Mattern, Jack~Min Ong, Jannik
+  Straube, Manveer Basra, Aaron Pazdera, Kushal Thaman, Matthew Di~Ferrante,
+  Felix Gabriel, Fares Obeid, Kemal Erdem, Michael Keiblinger, and Johannes
+  Hagemann.
+\newblock {INTELLECT-2}: A reasoning model trained through globally
+  decentralized reinforcement learning.
+\newblock \emph{arXiv preprint arXiv:2505.07291}, 2025.
+\newblock URL \url{https://arxiv.org/abs/2505.07291}.
+
+\bibitem[Qi et~al.(2025)Qi, Liu, Zhou, Pang, Du, Lee, and Lin]{fp16_rl}
+Penghui Qi, Zichen Liu, Xiangxin Zhou, Tianyu Pang, Chao Du, Wee~Sun Lee, and
+  Min Lin.
+\newblock Defeating the training-inference mismatch via {FP16}.
+\newblock \emph{arXiv preprint arXiv:2510.26788}, 2025.
+\newblock URL \url{https://arxiv.org/abs/2510.26788}.
+
+\bibitem[Qi et~al.(2026)Qi, Zhou, Liu, Pang, Du, Lin, and Lee]{dppo}
+Penghui Qi, Xiangxin Zhou, Zichen Liu, Tianyu Pang, Chao Du, Min Lin, and
+  Wee~Sun Lee.
+\newblock Rethinking the trust region in {LLM} reinforcement learning.
+\newblock \emph{arXiv preprint arXiv:2602.04879}, 2026.
+\newblock URL \url{https://arxiv.org/abs/2602.04879}.
+
+\bibitem[Qiu et~al.(2026)Qiu, Yu, Zhang, Zhang, Huang, Yang, and Lai]{fp8_rl}
+Zhaopeng Qiu, Shuang Yu, Jingqi Zhang, Shuai Zhang, Xue Huang, Jingyi Yang, and
+  Junjie Lai.
+\newblock {FP8-RL}: A practical and stable low-precision stack for {LLM}
+  reinforcement learning.
+\newblock \emph{arXiv preprint arXiv:2601.18150}, 2026.
+\newblock URL \url{https://arxiv.org/abs/2601.18150}.
+
+\bibitem[Ranganath et~al.(2014)Ranganath, Gerrish, and Blei]{bbvi}
+Rajesh Ranganath, Sean Gerrish, and David~M. Blei.
+\newblock Black box variational inference.
+\newblock In \emph{Artificial Intelligence and Statistics (AISTATS)}, 2014.
+
+\bibitem[Ren \& Sutherland(2025)Ren and Sutherland]{finetuning_dynamics}
+Yi~Ren and Danica~J. Sutherland.
+\newblock Learning dynamics of {LLM} finetuning.
+\newblock In \emph{International Conference on Learning Representations}, 2025.
+
+\bibitem[Schulman et~al.(2017)Schulman, Wolski, Dhariwal, Radford, and
+  Klimov]{ppo}
+John Schulman, Filip Wolski, Prafulla Dhariwal, Alec Radford, and Oleg Klimov.
+\newblock Proximal policy optimization algorithms.
+\newblock \emph{arXiv preprint arXiv:1707.06347}, 2017.
+\newblock URL \url{https://arxiv.org/abs/1707.06347}.
+
+\bibitem[Shao et~al.(2024)Shao, Wang, Zhu, Xu, Song, Bi, Zhang, Zhang, Li, Wu,
+  and Guo]{grpo}
+Zhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu, Junxiao Song, Xiao Bi, Haowei
+  Zhang, Mingchuan Zhang, Y.K. Li, Y.~Wu, and Daya Guo.
+\newblock {DeepSeekMath}: Pushing the limits of mathematical reasoning in open
+  language models.
+\newblock \emph{arXiv preprint arXiv:2402.03300}, 2024.
+\newblock URL \url{https://arxiv.org/abs/2402.03300}.
+
+\bibitem[Sheng et~al.(2024)Sheng, Zhang, Ye, Wu, Zhang, Zhang, Peng, Lin, and
+  Wu]{verl}
+Guangming Sheng, Chi Zhang, Zilingfeng Ye, Xibin Wu, Wang Zhang, Ru~Zhang,
+  Yanghua Peng, Haibin Lin, and Chuan Wu.
+\newblock {HybridFlow}: A flexible and efficient {RLHF} framework.
+\newblock \emph{arXiv preprint arXiv:2409.19256}, 2024.
+\newblock URL \url{https://arxiv.org/abs/2409.19256}.
+
+\bibitem[Williams(1992)]{reinforce}
+Ronald~J. Williams.
+\newblock Simple statistical gradient-following algorithms for connectionist
+  reinforcement learning.
+\newblock \emph{Machine Learning}, 8:\penalty0 229--256, 1992.
+\newblock \doi{10.1007/BF00992696}.
+
+\bibitem[Xi et~al.(2026)Xi, Ruan, Liao, Lin, Cai, Zhao, Yang, Keutzer, Han, and
+  Zhu]{jet_rl}
+Haocheng Xi, Charlie Ruan, Peiyuan Liao, Yujun Lin, Han Cai, Yilong Zhao, Shuo
+  Yang, Kurt Keutzer, Song Han, and Ligeng Zhu.
+\newblock {Jet-RL}: Enabling on-policy {FP8} reinforcement learning with
+  unified training and rollout precision flow.
+\newblock \emph{arXiv preprint arXiv:2601.14243}, 2026.
+
+\bibitem[Yang et~al.(2025)Yang, Li, Yang, Zhang, Hui, Zheng, Yu, Gao,
+  et~al.]{qwen3}
+An~Yang, Anfeng Li, Baosong Yang, Beichen Zhang, Binyuan Hui, Bo~Zheng, Bowen
+  Yu, Chang Gao, et~al.
+\newblock Qwen3 technical report.
+\newblock \emph{arXiv preprint arXiv:2505.09388}, 2025.
+\newblock URL \url{https://arxiv.org/abs/2505.09388}.
+
+\bibitem[Yao et~al.(2025)Yao, Liu, Zhang, Dong, Shang, and Gao]{tis}
+Feng Yao, Liyuan Liu, Dinghuai Zhang, Chengyu Dong, Jingbo Shang, and Jianfeng
+  Gao.
+\newblock On the rollout-training mismatch in modern {RL} systems.
+\newblock In \emph{NeurIPS 2025 Workshop on Efficient Reasoning}, 2025.
+\newblock URL \url{https://openreview.net/forum?id=8MHqvb4lK9}.
+\newblock Blog version: \url{https://fengyao.notion.site/off-policy-rl}.
+
+\bibitem[Ye et~al.(2026)Ye, Zhang, Hao, Yu, Zhang, Gullapalli, Chen, Huang, and
+  Zhang]{alp}
+Chenlu Ye, Xuanchang Zhang, Yifan Hao, Zhou Yu, Ziji Zhang, Abhinav Gullapalli,
+  Hao Chen, Jing Huang, and Tong Zhang.
+\newblock Adaptive layerwise perturbation: Unifying off-policy corrections for
+  {LLM} {RL}.
+\newblock \emph{arXiv preprint arXiv:2603.19470}, 2026.
+\newblock URL \url{https://arxiv.org/abs/2603.19470}.
+
+\bibitem[Yu et~al.(2022)Yu, Jeong, Kim, Kim, and Chun]{orca}
+Gyeong-In Yu, Joo~Seong Jeong, Geon-Woo Kim, Soojeong Kim, and Byung-Gon Chun.
+\newblock Orca: A distributed serving system for transformer-based generative
+  models.
+\newblock In \emph{16th USENIX Symposium on Operating Systems Design and
+  Implementation (OSDI 22)}, pp.\  521--538, 2022.
+
+\bibitem[Yu et~al.(2025)Yu, Zhang, Zhu, et~al.]{dapo}
+Qiying Yu, Zheng Zhang, Ruofei Zhu, et~al.
+\newblock {DAPO}: An open-source {LLM} reinforcement learning system at scale.
+\newblock \emph{arXiv preprint arXiv:2503.14476}, 2025.
+\newblock URL \url{https://arxiv.org/abs/2503.14476}.
+
+\bibitem[Zheng et~al.(2025)Zheng, Liu, Li, Chen, Yu, Gao, Dang, Liu, Men, Yang,
+  Zhou, and Lin]{gspo}
+Chujie Zheng, Shixuan Liu, Mingze Li, Xiong-Hui Chen, Bowen Yu, Chang Gao, Kai
+  Dang, Yuqiong Liu, Rui Men, An~Yang, Jingren Zhou, and Junyang Lin.
+\newblock Group sequence policy optimization.
+\newblock \emph{arXiv preprint arXiv:2507.18071}, 2025.
+\newblock URL \url{https://arxiv.org/abs/2507.18071}.
+
+\bibitem[Zhu et~al.(2025)Zhu, Xia, Wei, Chen, Chen, and
+  Meng]{negative_reinforcement}
+Xinyu Zhu, Mengzhou Xia, Zhepei Wei, Wei-Lin Chen, Danqi Chen, and Yu~Meng.
+\newblock The surprising effectiveness of negative reinforcement in {LLM}
+  reasoning.
+\newblock \emph{arXiv preprint arXiv:2506.01347}, 2025.
+\newblock URL \url{https://arxiv.org/abs/2506.01347}.
+
+\end{thebibliography}

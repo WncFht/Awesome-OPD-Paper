@@ -1,0 +1,19 @@
+\section{引言}
+
+强化学习是当今大型语言模型训练中的关键步骤，这体现在越来越多的训练算力被分配给强化学习~\citep{o1,deepseek_r1,scaleRL,mai_1}。  
+这通常通过PPO、GRPO、DAPO和IcePop等算法实现~\citep{ppo,grpo,dapo,icepop}，这些算法均基于策略梯度方法~\citep{reinforce}。
+
+通过策略梯度进行大模型的训练包含采样轨迹、为每条轨迹分配奖励，并对加权轨迹计算梯度。  
+更正式地，策略梯度方法将策略 $p_\theta$  在轨迹 $y$  上的期望奖励梯度计算为由奖励 $R$  加权的期望得分：
+\begin{equation}
+\nabla_\theta \, \mathbb{E}_{p_\theta}[R] = \mathbb{E}_{p_\theta} \big[ R \, \underbrace{\nabla_\theta \log p_\theta(y)}_{\text{``score''}} \big].
+\label{eq:policy_grad}
+\end{equation}
+
+对从业者而言，计算公式\Cref{eq:policy_grad}右侧需要对模型进行两次独立的前向传播：第一次是采样器（推理引擎）的前向传播以生成轨迹，第二次是训练器的前向传播以计算生成轨迹上的梯度。  
+理论上，训练器和采样器代表的是同一个模型，因此它们的输出应当完全相同。  
+然而在实践中，这种情况很少发生。  
+大多数强化学习代码库中，训练引擎与推理引擎之间存在微小的数值差异，导致所谓的“训练-推理不匹配”（TIM），这可能会降低训练性能\citep{scaleRL}，甚至引发奖励完全崩溃\citep{flashrl}。相比之下，监督微调通常使用来自不同模型或人工标注者的样本，具有稳定的训练动态，无需任何调整。
+
+在本工作中，我们研究了强化学习对训练-推理不匹配敏感性的原因。通过分析策略梯度更新，我们发现其包含一个\textit{漂移}项，该项仅在训练策略与采样策略一致时为0。基于这一发现，我们提出了一种新的方法，用于在TIM条件下稳定强化学习的训练过程，称为\textbf{得分中心化}。\footnote{\href{https://github.com/martin-marek/score-centering}{\texttt{github.com/martin-marek/score-centering}}}
+在使用Qwen3-0.6B进行Countdown实验以及使用Qwen3-30B-A3B-Base在INTELLECT-2数据集的数学子集上的实验中，我们展示了得分中心化方法能够达到或超越基于重要性采样的最先进训练稳定性技术。由于两种方法具有正交性，得分中心化可与重要性采样结合，以获得进一步的提升。
